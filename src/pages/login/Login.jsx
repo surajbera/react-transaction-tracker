@@ -18,6 +18,7 @@ const Login = () => {
         <span>Email: </span>
         <input
           type='email'
+          required
           value={email}
           onChange={(evt) => {
             setEmail(evt.target.value)
@@ -29,6 +30,7 @@ const Login = () => {
         <span>Password: </span>
         <input
           type='password'
+          required
           value={password}
           onChange={(evt) => {
             setPassword(evt.target.value)

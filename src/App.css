@@ -6,6 +6,9 @@ body {
   margin: 0;
   font-size: 1.1em;
 }
+input {
+  font-family: Poppins, sans-serif;
+}
 ul,
 li,
 p,
@@ -32,4 +35,18 @@ ul {
 .btn:hover {
   background: #1f9751;
   color: #fff;
+}
+.form-container {
+  text-align: center;
+}
+.error-text {
+  padding: 5px 20px;
+  background-color: #fecaca;
+  color: #dc2626;
+  border-radius: 10px;
+  width: 300px;
+  max-width: 100%;
+  margin: 20px auto;
+  font-size: 13px;
+  font-weight: 500;
 }

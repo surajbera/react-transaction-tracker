@@ -1,3 +1,4 @@
 import Navbar from './Navbar/Navbar'
+import Loader from './Loader/Loader'
 
-export { Navbar }
+export { Navbar, Loader }
