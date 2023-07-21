@@ -4,10 +4,9 @@ import styles from './navbar.module.css'
 import { useLogout } from '../../hooks/useLogout'
 
 const Navbar = () => {
-  const { isPending, isError, logOut } = useLogout()
+  const { logOut } = useLogout()
 
-  const onLogoutHandler = (evt) => {
-    evt.stopPropagation()
+  const onLogoutHandler = () => {
     logOut()
   }
 

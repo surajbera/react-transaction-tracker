@@ -1,4 +1,4 @@
-import { useReducer, useState, useEffect } from 'react'
+import { useReducer } from 'react'
 
 import { projectAuth } from '../firebase/config'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
@@ -7,7 +7,6 @@ import { useConsole } from './useConsole'
 import { useAuthContext } from './useAuthContext'
 
 export const useSignup = () => {
-  const [isCancelled, setIsCancelled] = useState(false)
   const IS_PENDING = 'IS_PENDING'
   const IS_ERROR = 'IS_ERROR'
   const { dispatchLoginEvent } = useAuthContext()
@@ -28,27 +27,17 @@ export const useSignup = () => {
     isError: null,
   }
 
-  const dispatchIfNotCancelled = (action) => {
-    if (!isCancelled) {
-      dispatch(action)
-    }
-  }
-
   const [state, dispatch] = useReducer(signUpReducer, initialState)
-
-  useEffect(() => {
-    return () => setIsCancelled(true)
-  }, [])
 
   /* remove this */
   useConsole('useSignup hook ran')
 
   const setIsPending = (value) => {
-    dispatchIfNotCancelled({ type: IS_PENDING, payload: value })
+    dispatch({ type: IS_PENDING, payload: value })
   }
 
   const setIsError = (value) => {
-    dispatchIfNotCancelled({ type: IS_ERROR, payload: value })
+    dispatch({ type: IS_ERROR, payload: value })
   }
 
   const signUp = async (email, password, displayName) => {
