@@ -4,10 +4,12 @@ import { projectAuth } from '../firebase/config'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 
 import { useConsole } from './useConsole'
+import { useAuthContext } from './useAuthContext'
 
 export const useSignup = () => {
   const IS_PENDING = 'IS_PENDING'
   const IS_ERROR = 'IS_ERROR'
+  const { dispatchLoginEvent } = useAuthContext()
 
   const signUpReducer = (state, action) => {
     switch (action.type) {
@@ -24,7 +26,7 @@ export const useSignup = () => {
     isPending: false,
     isError: null,
   }
-  
+
   const [state, dispatch] = useReducer(signUpReducer, initialState)
 
   /* remove this */
@@ -42,7 +44,7 @@ export const useSignup = () => {
     setIsError(null)
     setIsPending(true)
     try {
-      await createUserWithEmailAndPassword(projectAuth, email, password)
+      const userCredential = await createUserWithEmailAndPassword(projectAuth, email, password)
 
       /* NOTE: We do not need to manually throw the error */
       // if (!userCredential) {
@@ -51,7 +53,7 @@ export const useSignup = () => {
       // Even if the internet connection is off, control goes to the catch block, no need to manually throw the error
 
       await updateProfile(projectAuth.currentUser, { displayName })
-
+      dispatchLoginEvent(userCredential.user)
       setIsPending(false)
       setIsError(null)
     } catch (error) {

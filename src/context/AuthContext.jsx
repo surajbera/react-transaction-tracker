@@ -1,19 +1,22 @@
-import { useEffect } from 'react'
-import { createContext, useReducer } from 'react'
+import { createContext, useReducer, useEffect } from 'react'
 
 import { onAuthStateChanged } from 'firebase/auth'
 import { projectAuth } from '../firebase/config'
+import { useConsole } from '../hooks'
 
 export const AuthContext = createContext()
 
 export const AuthContextProvider = ({ children }) => {
+  /* remove this */
+  useConsole('AuthContextProvider ran', '#cbd5e1')
+
   const LOGIN = 'LOGIN'
   const LOGOUT = 'LOGOUT'
   const IS_AUTH_READY = 'IS_AUTH_READY'
   const SET_USER = 'SET_USER'
 
   const initialState = {
-    user: null,
+    authUser: null,
     isAuthReady: false,
   }
 
@@ -22,12 +25,12 @@ export const AuthContextProvider = ({ children }) => {
       case LOGIN:
         return {
           ...state,
-          user: action.payload,
+          authUser: action.payload,
         }
       case LOGOUT:
         return {
           ...state,
-          user: null,
+          authUser: null,
         }
       case IS_AUTH_READY:
         return {
@@ -37,7 +40,7 @@ export const AuthContextProvider = ({ children }) => {
       case SET_USER:
         return {
           ...state,
-          user: action.payload,
+          authUser: action.payload,
         }
       default:
         return state
@@ -45,6 +48,7 @@ export const AuthContextProvider = ({ children }) => {
   }
 
   const [state, dispatch] = useReducer(authReducer, initialState)
+  console.log(state)
 
   const dispatchLoginEvent = (value) => {
     dispatch({ type: LOGIN, payload: value })

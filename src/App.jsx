@@ -6,6 +6,8 @@ import { Signup } from './pages'
 
 import { Navbar } from './components'
 
+import { useAuthContext } from './hooks'
+
 import './App.css'
 
 function App() {
