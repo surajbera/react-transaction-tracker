@@ -24,6 +24,7 @@ export const useSignup = () => {
     isPending: false,
     isError: null,
   }
+  
   const [state, dispatch] = useReducer(signUpReducer, initialState)
 
   /* remove this */
