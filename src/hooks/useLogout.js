@@ -30,7 +30,7 @@ export const useLogout = () => {
   const [state, dispatch] = useReducer(logoutReducer, initialState)
 
   /* remove this */
-  useConsole('useLogout hook ran')
+  useConsole('useLogout hook ran', '#93c5fd')
 
   const setIsPending = (value) => {
     dispatch({ type: IS_PENDING, payload: value })

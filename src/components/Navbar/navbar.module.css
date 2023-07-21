@@ -18,8 +18,12 @@
   font-size: 1.2em;
 }
 .navbar button,
-.navbar a {
+.navbar a,
+.navbar span {
   margin-left: 16px;
+}
+.navbar span {
+  cursor: pointer;
 }
 .navbar a {
   color: #333;

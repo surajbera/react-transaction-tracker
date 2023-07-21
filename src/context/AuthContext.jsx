@@ -70,8 +70,8 @@ export const AuthContextProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(projectAuth, (user) => {
       if (user) {
         setUser(user)
-        setIsAuthReady(true)
       }
+      setIsAuthReady(true)
     })
 
     return () => unsubscribe()
