@@ -4,7 +4,6 @@ import { useConsole } from '../../hooks'
 
 const PageLayout = () => {
   const location = useLocation()
-  console.log(location)
   let isNotFoundPage = false
   const validPages = ['/', '/signup', '/login']
   if (!validPages.includes(location.pathname)) {

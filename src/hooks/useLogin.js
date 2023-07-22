@@ -29,10 +29,6 @@ export const useLogin = () => {
 
   const [state, dispatch] = useReducer(loginReducer, initialState)
 
-  useEffect(() => {
-    return () => console.log('useLogin unmounted')
-  }, [])
-
   /* remove this */
   useConsole('useLogin hook ran', '#d9f99d')
 

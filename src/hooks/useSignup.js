@@ -29,10 +29,6 @@ export const useSignup = () => {
 
   const [state, dispatch] = useReducer(signUpReducer, initialState)
 
-  useEffect(() => {
-    return () => console.log('useSignup unmounted')
-  }, [])
-
   /* remove this */
   useConsole('useSignup hook ran')
 

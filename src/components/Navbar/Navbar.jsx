@@ -11,8 +11,8 @@ const Navbar = () => {
   const { logOut, isPending } = useLogout()
   const { authUser } = useAuthContext()
 
-  const onLogoutHandler = () => {
-    logOut()
+  const onLogoutHandler = async () => {
+    await logOut()
   }
 
   return (
