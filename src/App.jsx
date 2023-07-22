@@ -3,26 +3,30 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Home } from './pages'
 import { Login } from './pages'
 import { Signup } from './pages'
+import { NotFound } from './pages'
 
-import { Loader, Navbar } from './components'
+import { Loader } from './components'
+import { PageLayout } from './components'
 
 import { useAuthContext } from './hooks'
 
 import './App.css'
 
 function App() {
-  const { authUser } = useAuthContext()
+  const { isAuthReady } = useAuthContext()
 
   return (
-    <div id='root-inner'>
-      {!authUser && <Loader />}
-      {authUser && (
+    <div className='root-inner'>
+      {!isAuthReady && <Loader />}
+      {isAuthReady && (
         <Router>
-          <Navbar />
           <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/signup' element={<Signup />} />
+            <Route element={<PageLayout />}>
+              <Route path='/' element={<Home />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/signup' element={<Signup />} />
+              <Route path='*' element={<NotFound />} />
+            </Route>
           </Routes>
         </Router>
       )}

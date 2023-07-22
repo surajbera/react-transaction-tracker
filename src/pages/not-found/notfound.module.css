@@ -1,0 +1,13 @@
+.not-found-text {
+  font-size: 60px;
+  font-weight: 700;
+  color: #64748b;
+}
+.not-found-sub-text {
+  margin: 20px 0;
+  color: #64748b;
+  font-weight: 500;
+}
+.not-found-link {
+  color: #3b82f6;
+}

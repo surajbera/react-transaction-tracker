@@ -1,4 +1,5 @@
-import Navbar from './Navbar/Navbar'
+import Navbar from './navbar/Navbar'
 import Loader from './loader/Loader'
+import PageLayout from './page-layout/PageLayout'
 
-export { Navbar, Loader }
+export { Navbar, Loader, PageLayout }
