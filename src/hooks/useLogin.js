@@ -1,4 +1,4 @@
-import { useReducer, useEffect } from 'react'
+import { useReducer } from 'react'
 
 import { projectAuth } from '../firebase/config'
 import { signInWithEmailAndPassword } from 'firebase/auth'
@@ -51,9 +51,7 @@ export const useLogin = () => {
       //   throw new Error('Could not complete the login')
       // }
       // Even if the internet connection is off, control goes to the catch block, no need to manually throw the error
-      console.log('Before dispatchLoginEvent')
       dispatchLoginEvent(userCredential.user)
-      console.log('After dispatchLoginEvent')
       setIsPending(false)
       setIsError(null)
     } catch (error) {

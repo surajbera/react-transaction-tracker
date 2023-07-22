@@ -1,0 +1,49 @@
+#loading-button {
+  padding: 12px 12px;
+  border: 0;
+  background: #16a34a;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0px 10px 10px -10px #16a34a;
+}
+.loading-btn-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.loading-btn-bar {
+  background-color: #6ee7b7;
+  min-width: 100%;
+  min-height: 5px;
+  position: relative;
+  overflow: hidden;
+}
+.loading-btn-bar::after {
+  content: '';
+  min-height: 5px;
+  position: absolute;
+  background: #fff;
+  transform: translateX(-100%);
+  animation: animateMyButton 1.5s infinite;
+}
+.loading-btn-bar::before {
+  content: '';
+  min-height: 5px;
+  position: absolute;
+  background: #fff;
+  transform: translateX(-100%);
+  animation: animateMyButton 1.5s infinite;
+  animation-delay: 750ms;
+}
+@keyframes animateMyButton {
+  0% {
+    transform: translateX(-150%);
+    min-width: 100px;
+  }
+  100% {
+    transform: translateX(300%);
+    min-width: 400px;
+  }
+}

@@ -1,15 +1,15 @@
 import { useState } from 'react'
+import { useAddDocument } from '../../hooks'
+import { LoaderInButton } from '../../components'
 
-const TransactionForm = () => {
+const TransactionForm = ({ userId }) => {
   const [name, setName] = useState('')
   const [amount, setAmount] = useState('')
+  const { isPending, isError, isSuccess, addDocument } = useAddDocument('transaction')
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault()
-    console.log({
-      name,
-      amount,
-    })
+    await addDocument({ uid: userId, name, amount })
   }
 
   return (
@@ -21,7 +21,7 @@ const TransactionForm = () => {
           <input type='text' required onChange={(e) => setName(e.target.value)} value={name} />
         </label>
         <label>
-          <span>Amount ($):</span>
+          <span>Amount (₹):</span>
           <input
             type='number'
             required
@@ -29,7 +29,8 @@ const TransactionForm = () => {
             value={amount}
           />
         </label>
-        <button>Add Transaction</button>
+        {!isPending && <button>Add Transaction</button>}
+        {isPending && <LoaderInButton />}
       </form>
     </>
   )
