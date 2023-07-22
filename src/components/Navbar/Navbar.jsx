@@ -4,8 +4,12 @@ import styles from './navbar.module.css'
 import { useLogout } from '../../hooks/useLogout'
 import Loader from '../loader/Loader'
 
+import { useAuthContext } from '../../hooks'
+import { projectAuth } from '../../firebase/config'
+
 const Navbar = () => {
   const { logOut, isPending } = useLogout()
+  const { authUser } = useAuthContext()
 
   const onLogoutHandler = () => {
     logOut()
@@ -18,15 +22,26 @@ const Navbar = () => {
           <li className={styles.title}>
             <Link to='/'>T-Tracker</Link>
           </li>
-          <li>
-            <Link to='login'>Login</Link>
-          </li>
-          <li>
-            <Link to='signup'>Signup</Link>
-          </li>
-          <li>
-            <span onClick={onLogoutHandler}>Logout</span>
-          </li>
+          {authUser && (
+            <li>
+              <span>{`Hello, ${projectAuth.currentUser.displayName}`}</span>
+            </li>
+          )}
+          {!authUser && (
+            <>
+              <li>
+                <Link to='login'>Login</Link>
+              </li>
+              <li>
+                <Link to='signup'>Signup</Link>
+              </li>
+            </>
+          )}
+          {authUser && (
+            <li>
+              <span onClick={onLogoutHandler}>Logout</span>
+            </li>
+          )}
         </ul>
       </nav>
       {isPending && <Loader />}

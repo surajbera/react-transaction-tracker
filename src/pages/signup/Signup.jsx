@@ -13,6 +13,10 @@ const Signup = () => {
 
   const onSubmitHandler = (evt) => {
     evt.preventDefault()
+    if (displayName.length > 5) {
+      alert('Display name cannot be more than 5 characters!')
+      return
+    }
     signUp(email, password, displayName)
   }
 
