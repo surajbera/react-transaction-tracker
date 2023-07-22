@@ -1,4 +1,4 @@
 import Navbar from './Navbar/Navbar'
-import Loader from './Loader/Loader'
+import Loader from './loader/Loader'
 
 export { Navbar, Loader }

@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import { useSignup } from '../../hooks'
+
+import { Loader } from '../../components'
+
 import styles from './signup.module.css'
 
 const Signup = () => {
@@ -62,6 +65,7 @@ const Signup = () => {
         )}
       </form>
       {isError && <p className='error-text'>{isError}</p>}
+      {isPending && <Loader />}
     </div>
   )
 }

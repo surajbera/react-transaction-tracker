@@ -1,17 +1,17 @@
 import { useReducer, useEffect } from 'react'
 
 import { projectAuth } from '../firebase/config'
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 
 import { useConsole } from './useConsole'
 import { useAuthContext } from './useAuthContext'
 
-export const useSignup = () => {
+export const useLogin = () => {
   const IS_PENDING = 'IS_PENDING'
   const IS_ERROR = 'IS_ERROR'
   const { dispatchLoginEvent } = useAuthContext()
 
-  const signUpReducer = (state, action) => {
+  const loginReducer = (state, action) => {
     switch (action.type) {
       case IS_PENDING:
         return { ...state, isPending: action.payload }
@@ -27,14 +27,14 @@ export const useSignup = () => {
     isError: null,
   }
 
-  const [state, dispatch] = useReducer(signUpReducer, initialState)
+  const [state, dispatch] = useReducer(loginReducer, initialState)
 
   useEffect(() => {
-    return () => console.log('useSignup unmounted')
+    return () => console.log('useLogin unmounted')
   }, [])
 
   /* remove this */
-  useConsole('useSignup hook ran')
+  useConsole('useLogin hook ran', '#d9f99d')
 
   const setIsPending = (value) => {
     dispatch({ type: IS_PENDING, payload: value })
@@ -44,20 +44,20 @@ export const useSignup = () => {
     dispatch({ type: IS_ERROR, payload: value })
   }
 
-  const signUp = async (email, password, displayName) => {
+  const login = async (email, password) => {
     setIsError(null)
     setIsPending(true)
     try {
-      const userCredential = await createUserWithEmailAndPassword(projectAuth, email, password)
+      const userCredential = await signInWithEmailAndPassword(projectAuth, email, password)
 
       /* NOTE: We do not need to manually throw the error */
       // if (!userCredential.user) {
-      //   throw new Error('Could not complete the signup')
+      //   throw new Error('Could not complete the login')
       // }
       // Even if the internet connection is off, control goes to the catch block, no need to manually throw the error
-
-      await updateProfile(projectAuth.currentUser, { displayName })
+      console.log('Before dispatchLoginEvent')
       dispatchLoginEvent(userCredential.user)
+      console.log('After dispatchLoginEvent')
       setIsPending(false)
       setIsError(null)
     } catch (error) {
@@ -67,7 +67,7 @@ export const useSignup = () => {
     }
   }
 
-  const value = { ...state, signUp }
+  const value = { ...state, login }
 
   return value
 }
