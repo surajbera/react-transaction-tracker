@@ -16,7 +16,7 @@ const TransactionList = ({ transactions }) => {
       {transactions.map((transaction) => (
         <li key={uuidv4()}>
           <p className={styles.name}>{transaction.name}</p>
-          <p className={styles.amount}>${transaction.amount}</p>
+          <p className={styles.amount}>₹{transaction.amount}</p>
           <button onClick={() => handleDelete(transaction.id)}>x</button>
         </li>
       ))}
