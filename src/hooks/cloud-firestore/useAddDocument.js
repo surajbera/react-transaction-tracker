@@ -4,28 +4,31 @@ import { collection, addDoc, Timestamp } from 'firebase/firestore'
 import { projectDb } from '../../firebase/config'
 // import { useCustomDelay } from '../useCustomDelay'
 
-export const useAddDocument = (collectionName) => {
-  const IS_PENDING = 'IS_PENDING'
-  const IS_ERROR = 'IS_ERROR'
-  const IS_SUCCESS = 'IS_SUCCESS'
+const IS_PENDING = 'IS_PENDING'
+const IS_ERROR = 'IS_ERROR'
+const IS_SUCCESS = 'IS_SUCCESS'
 
-  const addDocumentReducer = (state, action) => {
-    switch (action.type) {
-      case IS_PENDING:
-        return { ...state, isPending: action.payload }
-      case IS_ERROR:
-        return { ...state, isError: action.payload }
-      case IS_SUCCESS:
-        return { ...state, isSuccess: action.payload }
-      default:
-        return state
-    }
+const addDocumentReducer = (state, action) => {
+  switch (action.type) {
+    case IS_PENDING:
+      return { ...state, isPending: action.payload }
+    case IS_ERROR:
+      return { ...state, isError: action.payload }
+    case IS_SUCCESS:
+      return { ...state, isSuccess: action.payload }
+    default:
+      return state
   }
-  const initialState = {
-    isPending: false,
-    isError: null,
-    isSuccess: false,
-  }
+}
+const initialState = {
+  isPending: false,
+  isError: null,
+  isSuccess: false,
+}
+
+export const useAddDocument = () => {
+  const [state, dispatch] = useReducer(addDocumentReducer, initialState)
+
   const setIsPending = (value) => {
     dispatch({ type: IS_PENDING, payload: value })
   }
@@ -38,11 +41,8 @@ export const useAddDocument = (collectionName) => {
     dispatch({ type: IS_SUCCESS, payload: value })
   }
 
-  const [state, dispatch] = useReducer(addDocumentReducer, initialState)
-
-  const collectionRef = collection(projectDb, collectionName)
-
-  const addDocument = async (documentData) => {
+  const addDocument = async (collectionName, documentData) => {
+    const collectionRef = collection(projectDb, collectionName)
     setIsError(null)
     setIsPending(true)
     setIsSuccess(false)

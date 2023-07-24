@@ -5,11 +5,11 @@ import { LoaderInButton } from '../../components'
 const TransactionForm = ({ userId }) => {
   const [name, setName] = useState('')
   const [amount, setAmount] = useState('')
-  const { isPending, isSuccess, addDocument } = useAddDocument('transaction')
+  const { isPending, isSuccess, addDocument } = useAddDocument()
 
   const onSubmitHandler = async (e) => {
     e.preventDefault()
-    await addDocument({ uid: userId, name, amount })
+    await addDocument('transaction', { userUid: userId, name, amount })
   }
 
   useEffect(() => {
