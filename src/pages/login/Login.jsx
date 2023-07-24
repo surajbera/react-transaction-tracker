@@ -41,11 +41,11 @@ const Login = () => {
             }}
           />
         </label>
-        {isPending ? (
+        {/* {isPending ? (
           <button className='btn'>Loading...</button>
         ) : (
           <button className='btn'>Login</button>
-        )}
+        )} */}
       </form>
       {isError && <p className='error-text'>{isError}</p>}
       {isPending && <Loader />}

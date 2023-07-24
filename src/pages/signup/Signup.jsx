@@ -60,13 +60,13 @@ const Signup = () => {
           />
         </label>
 
-        {isPending ? (
+        {/* {isPending ? (
           <button className='btn' disabled>
             Loading...
           </button>
         ) : (
           <button className='btn'>Signup</button>
-        )}
+        )} */}
       </form>
       {isError && <p className='error-text'>{isError}</p>}
       {isPending && <Loader />}
