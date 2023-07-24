@@ -1,7 +1,7 @@
 import { useReducer, useEffect, useRef } from 'react'
 
 import { projectDb } from '../../firebase/config'
-import { collection, query, onSnapshot, where } from 'firebase/firestore'
+import { collection, query, onSnapshot, where, orderBy } from 'firebase/firestore'
 // import { useCustomDelay } from '../useCustomDelay'
 
 const IS_PENDING = 'IS_PENDING'
@@ -56,7 +56,11 @@ export const useRealtimeCollectionWithParams = (collectionName, queryParam) => {
     let q = query(collection(projectDb, collectionName))
 
     if (cachedQueryParam) {
-      q = query(collection(projectDb, collectionName), where(...cachedQueryParam))
+      q = query(
+        collection(projectDb, collectionName),
+        where(...cachedQueryParam),
+        orderBy('createdAt', 'desc')
+      )
     }
 
     const unsubscribe = onSnapshot(
