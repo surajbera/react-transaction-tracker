@@ -50,11 +50,13 @@ export const useAddDocument = () => {
     try {
       /* we don't just add in the Date object, because firebase won't be able to order them correctly, instead we make use of the Timestamp object */
       const createdAt = Timestamp.fromDate(new Date())
+
       const amount = Number(documentData.amount)
       let isExpensive = false
       if (amount > 500) {
         isExpensive = true
       }
+
       docRef = await addDoc(collectionRef, { ...documentData, createdAt, isExpensive })
       // await useCustomDelay(1000)
       console.log('Document written with ID: ', docRef.id)
