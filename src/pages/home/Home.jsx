@@ -12,10 +12,17 @@ const Home = () => {
   const userId = authUser.uid
 
   return (
-    <div className={styles.container}>
-      <div className={styles.content}>transaction list</div>
-      <div className={styles.sidebar}>
-        <TransactionForm userId={userId} />
+    <div>
+      <div className={styles['user-info-wrap']}>
+        <div className={styles['user-info-container']}>
+          <p className={styles['user-info']}>Currently logged in as {authUser.email}</p>
+        </div>
+      </div>
+      <div className={styles['home-container']}>
+        <div className={styles.content}>transaction list</div>
+        <div className={styles.sidebar}>
+          <TransactionForm userId={userId} />
+        </div>
       </div>
     </div>
   )

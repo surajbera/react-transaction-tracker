@@ -4,6 +4,12 @@
   max-width: 960px;
   margin: 60px auto;
 }
+.home-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  max-width: 960px;
+  margin: 20px auto;
+}
 .content {
   padding-right: 30px;
 }
@@ -56,4 +62,15 @@
 }
 .sidebar aside li {
   margin: 10px;
+}
+.user-info-container {
+  margin: 15px 0;
+  padding: 5px 12px;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  border-radius: 10px;
+}
+.user-info-wrap {
+  max-width: 960px;
+  margin: auto;
 }

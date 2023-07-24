@@ -1,4 +1,4 @@
-import { useReducer, useEffect } from 'react'
+import { useReducer } from 'react'
 
 import { projectAuth } from '../firebase/config'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
