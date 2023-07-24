@@ -73,7 +73,7 @@ export const useRealtimeCollectionWithParams = (collectionName, queryParam) => {
 
         const results = []
         querySnapshot.forEach((doc) => {
-          results.push({ ...doc.data() })
+          results.push({ ...doc.data(), id: doc.id })
         })
 
         setIsPending(false)
