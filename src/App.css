@@ -65,3 +65,7 @@ ul {
   align-items: center;
   text-align: center;
 }
+::selection {
+  color: #000;
+  background-color: #c7d2fe;
+}

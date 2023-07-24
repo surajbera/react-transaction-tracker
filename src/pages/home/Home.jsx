@@ -3,15 +3,15 @@ import styles from './home.module.css'
 
 // components
 import TransactionForm from './TransactionForm'
-// import { TransactionList } from '../../components'
+import { TransactionList } from '../../components'
 
 /* hooks */
 import { useAuthContext } from './../../hooks'
-// import { useRealtimeCollection } from '../../hooks'
+import { useRealtimeCollection } from '../../hooks'
 
 const Home = () => {
   const { authUser } = useAuthContext()
-  // const { isPending, isError, documents } = useRealtimeCollection()
+  const { isPending, isError, documents } = useRealtimeCollection('transactions')
   const userId = authUser.uid
 
   return (
@@ -22,7 +22,12 @@ const Home = () => {
         </div>
       </div>
       <div className={styles['home-container']}>
-        <div className={styles.content}></div>
+        <div className={styles.content}>
+          {isPending && <p>Loading Documents...</p>}
+          {documents && <TransactionList transactions={documents} />}
+          {isError && <p>Could not fetch data!!!</p>}
+          {documents && documents.length < 1 && <p>No Transactions Found!!!</p>}
+        </div>
         <div className={styles.sidebar}>
           <TransactionForm userId={userId} />
         </div>

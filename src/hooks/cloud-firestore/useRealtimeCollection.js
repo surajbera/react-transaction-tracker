@@ -33,8 +33,10 @@ const initialState = {
 
 export const useRealtimeCollection = (collectionName) => {
   const [state, dispatch] = useReducer(realtimeCollectionReducer, initialState)
+  console.log(state)
 
   const setIsPending = (value) => {
+    console.log('isPending', value)
     dispatch({ type: IS_PENDING, payload: value })
   }
 

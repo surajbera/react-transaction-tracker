@@ -48,7 +48,6 @@ export const AuthContextProvider = ({ children }) => {
   }
 
   const [state, dispatch] = useReducer(authReducer, initialState)
-  console.log(state.authUser)
 
   const dispatchLoginEvent = (value) => {
     dispatch({ type: LOGIN, payload: value })

@@ -9,7 +9,7 @@ const TransactionForm = ({ userId }) => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault()
-    await addDocument('transaction', { userUid: userId, name, amount })
+    await addDocument('transactions', { userUid: userId, name, amount })
   }
 
   useEffect(() => {
