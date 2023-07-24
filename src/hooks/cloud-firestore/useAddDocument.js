@@ -46,7 +46,6 @@ export const useAddDocument = () => {
     setIsError(null)
     setIsPending(true)
     setIsSuccess(false)
-    let docRef = null
     try {
       /* we don't just add in the Date object, because firebase won't be able to order them correctly, instead we make use of the Timestamp object */
       const createdAt = Timestamp.fromDate(new Date())
@@ -57,9 +56,8 @@ export const useAddDocument = () => {
         isExpensive = true
       }
 
-      docRef = await addDoc(collectionRef, { ...documentData, createdAt, isExpensive })
+      await addDoc(collectionRef, { ...documentData, createdAt, isExpensive })
       // await useCustomDelay(1000)
-      console.log('Document written with ID: ', docRef.id)
       setIsPending(false)
       setIsError(null)
       setIsSuccess(true)
@@ -70,7 +68,7 @@ export const useAddDocument = () => {
       setIsSuccess(false)
     }
 
-    return { documentId: docRef.id }
+    return {}
   }
 
   return { ...state, addDocument }
