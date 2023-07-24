@@ -1,7 +1,7 @@
-import { useReducer, useEffect } from 'react'
+import { useReducer, useEffect, useRef } from 'react'
 
 import { projectDb } from '../../firebase/config'
-import { collection, query, onSnapshot } from 'firebase/firestore'
+import { collection, query, onSnapshot, where } from 'firebase/firestore'
 // import { useCustomDelay } from '../useCustomDelay'
 
 const IS_PENDING = 'IS_PENDING'
@@ -31,8 +31,10 @@ const initialState = {
   documents: null,
 }
 
-export const useRealtimeCollectionWithParams = (collectionName) => {
+export const useRealtimeCollectionWithParams = (collectionName, queryParam) => {
   const [state, dispatch] = useReducer(realtimeCollectionReducer, initialState)
+
+  let cachedQueryParam = useRef(queryParam).current
 
   const setIsPending = (value) => {
     dispatch({ type: IS_PENDING, payload: value })
@@ -51,7 +53,11 @@ export const useRealtimeCollectionWithParams = (collectionName) => {
   }
 
   useEffect(() => {
-    const q = query(collection(projectDb, collectionName))
+    let q = query(collection(projectDb, collectionName))
+
+    if (cachedQueryParam) {
+      q = query(collection(projectDb, collectionName), where(...cachedQueryParam))
+    }
 
     const unsubscribe = onSnapshot(
       q,
@@ -63,13 +69,12 @@ export const useRealtimeCollectionWithParams = (collectionName) => {
 
         const results = []
         querySnapshot.forEach((doc) => {
-          results.push({ ...doc.data(), id: doc.id })
+          results.push({ ...doc.data() })
         })
 
         setIsPending(false)
         setIsSuccess(true)
         setIsError(null)
-
         setDocuments(results)
       },
       (error) => {
@@ -82,7 +87,7 @@ export const useRealtimeCollectionWithParams = (collectionName) => {
     )
 
     return () => unsubscribe()
-  }, [collectionName])
+  }, [collectionName, cachedQueryParam])
 
   return { ...state }
 }

@@ -7,11 +7,15 @@ import { TransactionList } from '../../components'
 
 /* hooks */
 import { useAuthContext } from './../../hooks'
-import { useRealtimeCollection } from '../../hooks'
+import { useRealtimeCollectionWithParams } from '../../hooks'
 
 const Home = () => {
   const { authUser } = useAuthContext()
-  const { isPending, isError, documents } = useRealtimeCollection('transactions')
+  const { isPending, isError, documents } = useRealtimeCollectionWithParams('transactions', [
+    'userUid',
+    '==',
+    authUser.uid,
+  ])
   const userId = authUser.uid
 
   return (

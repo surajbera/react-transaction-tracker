@@ -1,7 +1,7 @@
 import { useReducer, useEffect } from 'react'
 
 import { projectDb } from '../../firebase/config'
-import { collection, query, onSnapshot } from 'firebase/firestore'
+import { collection, query, onSnapshot, where } from 'firebase/firestore'
 // import { useCustomDelay } from '../useCustomDelay'
 
 const IS_PENDING = 'IS_PENDING'
@@ -31,7 +31,7 @@ const initialState = {
   documents: null,
 }
 
-export const useRealtimeCollection = (collectionName) => {
+export const useRealtimeCollectionWithParams = (collectionName, userId) => {
   const [state, dispatch] = useReducer(realtimeCollectionReducer, initialState)
   console.log(state)
 
@@ -53,7 +53,7 @@ export const useRealtimeCollection = (collectionName) => {
   }
 
   useEffect(() => {
-    const q = query(collection(projectDb, collectionName))
+    const q = query(collection(projectDb, collectionName), where('userUid', '==', userId))
 
     const unsubscribe = onSnapshot(
       q,
@@ -83,7 +83,7 @@ export const useRealtimeCollection = (collectionName) => {
     )
 
     return () => unsubscribe()
-  }, [collectionName])
+  }, [collectionName, userId])
 
   return { ...state }
 }
