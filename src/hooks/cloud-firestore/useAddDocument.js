@@ -49,7 +49,12 @@ export const useAddDocument = (collectionName) => {
     let docRef = null
     try {
       const createdAt = Timestamp.fromDate(new Date())
-      docRef = await addDoc(collectionRef, { ...documentData, createdAt })
+      const amount = Number(documentData.amount)
+      let isExpensive = false
+      if (amount > 500) {
+        isExpensive = true
+      }
+      docRef = await addDoc(collectionRef, { ...documentData, createdAt, isExpensive: isExpensive })
       // await useCustomDelay(1000)
       console.log('Document written with ID: ', docRef.id)
       setIsPending(false)
