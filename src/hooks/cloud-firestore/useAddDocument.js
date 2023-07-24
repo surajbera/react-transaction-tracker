@@ -2,6 +2,7 @@ import { useReducer } from 'react'
 
 import { collection, addDoc, Timestamp } from 'firebase/firestore'
 import { projectDb } from '../../firebase/config'
+// import { useCustomDelay } from '../useCustomDelay'
 
 export const useAddDocument = (collectionName) => {
   const IS_PENDING = 'IS_PENDING'
@@ -49,6 +50,7 @@ export const useAddDocument = (collectionName) => {
     try {
       const createdAt = Timestamp.fromDate(new Date())
       docRef = await addDoc(collectionRef, { ...documentData, createdAt })
+      // await useCustomDelay(1000)
       console.log('Document written with ID: ', docRef.id)
       setIsPending(false)
       setIsError(null)

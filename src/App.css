@@ -24,16 +24,16 @@ ul {
 }
 .btn {
   background: none;
-  border: 2px solid #1f9751;
+  border: 2px solid #2563eb;
   padding: 6px 12px;
   border-radius: 4px;
-  color: #1f9751;
+  color: #2563eb;
   font-weight: bold;
   cursor: pointer;
   font-size: 1em;
 }
 .btn:hover {
-  background: #1f9751;
+  background: #2563eb;
   color: #fff;
 }
 .form-container {
@@ -57,6 +57,7 @@ ul {
 }
 .app-content-wrap {
   flex: 1;
+  padding: 0 15px;
 }
 .not-found-page {
   display: flex;

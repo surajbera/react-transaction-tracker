@@ -6,7 +6,7 @@ const LoaderInButton = () => {
       <div className={styles['loading-btn-container']}>
         <div className={styles['loading-btn-bar']}></div>
       </div>
-      Loading
+      Adding Transaction
     </button>
   )
 }

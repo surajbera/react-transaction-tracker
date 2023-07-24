@@ -1,15 +1,27 @@
-import { Link } from 'react-router-dom'
-import styles from './navbar.module.css'
+/* libraries */
+import { Link, useLocation } from 'react-router-dom'
 
+/* hooks */
 import { useLogout } from '../../hooks/useLogout'
+import { useAuthContext } from '../../hooks'
+
+/* components */
 import Loader from '../loader/Loader'
 
-import { useAuthContext } from '../../hooks'
-import { projectAuth } from '../../firebase/config'
+/* styles */
+import styles from './navbar.module.css'
 
 const Navbar = () => {
   const { logOut, isPending } = useLogout()
   const { authUser } = useAuthContext()
+  const { pathname } = useLocation()
+
+  const activeRouteStyles = {
+    backgroundColor: '#2563eb',
+    color: '#fff',
+    borderRadius: '3px',
+    padding: '5px 10px',
+  }
 
   const onLogoutHandler = async () => {
     await logOut()
@@ -22,18 +34,17 @@ const Navbar = () => {
           <li className={styles.title}>
             <Link to='/'>T-Tracker</Link>
           </li>
-          {authUser && (
-            <li>
-              <span>{`Hello, ${projectAuth.currentUser.displayName}`}</span>
-            </li>
-          )}
           {!authUser && (
             <>
               <li>
-                <Link to='login'>Login</Link>
+                <Link to='login' style={pathname === '/login' ? activeRouteStyles : {}}>
+                  Login
+                </Link>
               </li>
               <li>
-                <Link to='signup'>Signup</Link>
+                <Link to='signup' style={pathname === '/signup' ? activeRouteStyles : {}}>
+                  Signup
+                </Link>
               </li>
             </>
           )}

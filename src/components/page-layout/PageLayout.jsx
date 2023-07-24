@@ -1,6 +1,5 @@
 import { Outlet, useLocation } from 'react-router-dom'
 import Navbar from '../navbar/Navbar'
-import { useConsole } from '../../hooks'
 
 const PageLayout = () => {
   const location = useLocation()

@@ -1,11 +1,11 @@
 #loading-button {
   padding: 12px 12px;
   border: 0;
-  background: #16a34a;
+  background: #2563eb;
   color: white;
   position: relative;
   overflow: hidden;
-  box-shadow: 0px 10px 10px -10px #16a34a;
+  box-shadow: 0px 10px 10px -10px #2563eb;
 }
 .loading-btn-container {
   position: absolute;
@@ -14,7 +14,7 @@
   right: 0;
 }
 .loading-btn-bar {
-  background-color: #6ee7b7;
+  background-color: #818cf8;
   min-width: 100%;
   min-height: 5px;
   position: relative;
