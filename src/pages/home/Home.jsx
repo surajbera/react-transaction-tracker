@@ -3,12 +3,15 @@ import styles from './home.module.css'
 
 // components
 import TransactionForm from './TransactionForm'
+// import { TransactionList } from '../../components'
 
 /* hooks */
-import { useAuthContext } from './../../hooks/useAuthContext'
+import { useAuthContext } from './../../hooks'
+// import { useRealtimeCollection } from '../../hooks'
 
 const Home = () => {
   const { authUser } = useAuthContext()
+  // const { isPending, isError, documents } = useRealtimeCollection()
   const userId = authUser.uid
 
   return (
@@ -19,7 +22,7 @@ const Home = () => {
         </div>
       </div>
       <div className={styles['home-container']}>
-        <div className={styles.content}>transaction list</div>
+        <div className={styles.content}></div>
         <div className={styles.sidebar}>
           <TransactionForm userId={userId} />
         </div>
