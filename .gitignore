@@ -29,3 +29,4 @@ dist-ssr
 /.eslintrc.cjs
 /firestore.rules
 /rules.txt
+/.firebase
