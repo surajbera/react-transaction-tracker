@@ -42,10 +42,10 @@ export const useAddDoc = () => {
   }
 
   const addDocument = async (collectionName, documentData) => {
-    const collectionRef = collection(projectDb, collectionName)
     setIsError(null)
     setIsPending(true)
     setIsSuccess(false)
+    const collectionRef = collection(projectDb, collectionName)
     try {
       /* we don't just add in the Date object, because firebase won't be able to order them correctly, instead we make use of the Timestamp object */
       const createdAt = Timestamp.fromDate(new Date())

@@ -45,6 +45,7 @@ export const useUpdateDocument = async (collectionName, documentId) => {
     setIsError(null)
     setIsPending(true)
     setIsSuccess(false)
+
     try {
       await updateDoc(documentRef, documentData)
       setIsPending(false)

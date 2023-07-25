@@ -42,10 +42,10 @@ export const useDeleteDoc = () => {
   }
 
   const deleteDocument = async (collectionName, documentId) => {
-    const documentRef = doc(projectDb, collectionName, documentId)
     setIsError(null)
     setIsPending(true)
     setIsSuccess(false)
+    const documentRef = doc(projectDb, collectionName, documentId)
     let returnValue = null
     try {
       returnValue = await deleteDoc(documentRef)

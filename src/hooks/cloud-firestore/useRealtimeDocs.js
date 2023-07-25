@@ -51,16 +51,16 @@ export const useRealtimeDocs = (collectionName) => {
   }
 
   useEffect(() => {
+    setIsPending(true)
+    setIsSuccess(false)
+    setIsError(null)
+    setDocuments(null)
+
     const q = query(collection(projectDb, collectionName))
 
     const unsubscribe = onSnapshot(
       q,
       (querySnapshot) => {
-        setIsPending(true)
-        setIsSuccess(false)
-        setIsError(null)
-        setDocuments(null)
-
         const results = []
         querySnapshot.forEach((doc) => {
           results.push({ ...doc.data() })
