@@ -5,10 +5,10 @@ import { useLogout } from './auth/useLogout'
 import { useLogin } from './auth/useLogin'
 
 /* cloud firestore */
-import { useAddDocument } from './cloud-firestore/useAddDoc'
-import { useDeleteDocument } from './cloud-firestore/useDeleteDoc'
-import { useRealtimeCollection } from './cloud-firestore/useRealtimeDocs'
-import { useRealtimeCollectionWithParams } from './cloud-firestore/useRealtimeFilteredDocs'
+import { useAddDoc } from './cloud-firestore/useAddDoc'
+import { useDeleteDoc } from './cloud-firestore/useDeleteDoc'
+import { useRealtimeDocs } from './cloud-firestore/useRealtimeDocs'
+import { useRealtimeFilteredDocs } from './cloud-firestore/useRealtimeFilteredDocs'
 
 /* utilities */
 import { useCustomDelay } from './utilities/useCustomDelay'
@@ -20,9 +20,9 @@ export {
   useAuthContext,
   useLogout,
   useLogin,
-  useAddDocument,
+  useAddDoc,
   useCustomDelay,
-  useDeleteDocument,
-  useRealtimeCollection,
-  useRealtimeCollectionWithParams,
+  useDeleteDoc,
+  useRealtimeDocs,
+  useRealtimeFilteredDocs,
 }

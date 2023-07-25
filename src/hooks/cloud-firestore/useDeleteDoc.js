@@ -26,7 +26,7 @@ const initialState = {
   isSuccess: false,
 }
 
-export const useDeleteDocument = () => {
+export const useDeleteDoc = () => {
   const [state, dispatch] = useReducer(deleteDocumentReducer, initialState)
 
   const setIsPending = (value) => {

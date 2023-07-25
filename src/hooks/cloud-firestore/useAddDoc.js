@@ -26,7 +26,7 @@ const initialState = {
   isSuccess: false,
 }
 
-export const useAddDocument = () => {
+export const useAddDoc = () => {
   const [state, dispatch] = useReducer(addDocumentReducer, initialState)
 
   const setIsPending = (value) => {

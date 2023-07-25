@@ -4,11 +4,11 @@ import { TransactionList } from '../../components'
 
 /* hooks */
 import { useAuthContext } from './../../hooks'
-import { useRealtimeCollectionWithParams } from '../../hooks'
+import { useRealtimeFilteredDocs } from '../../hooks'
 
 const Home = () => {
   const { authUser } = useAuthContext()
-  const { isPending, isError, documents } = useRealtimeCollectionWithParams('transactions', [
+  const { isPending, isError, documents } = useRealtimeFilteredDocs('transactions', [
     'userUid',
     '==',
     authUser.uid,
@@ -26,8 +26,12 @@ const Home = () => {
         <div>
           {isPending && <p>Loading Documents...</p>}
           {documents && <TransactionList transactions={documents} />}
-          {isError && <p>Could not fetch data!!!</p>}
-          {documents && documents.length < 1 && <p>No Transactions Found!!!</p>}
+          {isError && <p>{isError}</p>}
+          {documents && documents.length < 1 && (
+            <p>
+              Start your financial journey today! Add your first transaction to track your spending.
+            </p>
+          )}
         </div>
         <div>
           <TransactionForm userId={userId} />

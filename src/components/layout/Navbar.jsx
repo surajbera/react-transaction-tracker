@@ -24,7 +24,7 @@ const Navbar = () => {
       <nav>
         <ul>
           <li>
-            <Link to='/'>T-Tracker</Link>
+            <Link to='/'>TrackIt</Link>
           </li>
           {!authUser && (
             <>

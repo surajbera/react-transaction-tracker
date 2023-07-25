@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
-import { useAddDocument } from '../../hooks'
+import { useAddDoc } from '../../hooks'
 
 const TransactionForm = ({ userId }) => {
   const [name, setName] = useState('')
   const [amount, setAmount] = useState('')
-  const { isPending, isSuccess, addDocument } = useAddDocument()
+  const { isPending, isSuccess, addDocument } = useAddDoc()
 
   const onSubmitHandler = async (e) => {
     e.preventDefault()

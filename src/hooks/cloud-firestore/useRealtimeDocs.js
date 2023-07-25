@@ -31,7 +31,7 @@ const initialState = {
   documents: null,
 }
 
-export const useRealtimeCollection = (collectionName) => {
+export const useRealtimeDocs = (collectionName) => {
   const [state, dispatch] = useReducer(realtimeCollectionReducer, initialState)
   console.log(state)
 

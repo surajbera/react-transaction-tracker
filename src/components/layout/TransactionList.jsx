@@ -1,9 +1,9 @@
 import { v4 as uuidv4 } from 'uuid'
 
-import { useDeleteDocument } from '../../hooks'
+import { useDeleteDoc } from '../../hooks'
 
 const TransactionList = ({ transactions }) => {
-  const { deleteDocument } = useDeleteDocument()
+  const { deleteDocument } = useDeleteDoc()
 
   const handleDelete = async (documentId) => {
     deleteDocument('transactions', documentId)

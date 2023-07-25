@@ -52,3 +52,7 @@ const Login = () => {
 }
 
 export default Login
+
+/* 
+  Stay on top of your finances with TrackIt, the smart solution to monitor, analyze, and track your transactions. Simplify your life, gain insights into your spending, and keep your financial goals on track. Sign up today and take the first step towards better financial management.
+*/
