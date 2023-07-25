@@ -3,7 +3,7 @@ import { useReducer } from 'react'
 import { projectAuth } from '../firebase/config'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 
-import { useConsole } from './useConsole'
+import { useConsole } from './utilities/useConsole'
 import { useAuthContext } from './useAuthContext'
 
 export const useLogin = () => {
