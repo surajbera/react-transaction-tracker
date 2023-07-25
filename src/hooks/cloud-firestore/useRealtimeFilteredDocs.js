@@ -31,8 +31,9 @@ const initialState = {
   documents: null,
 }
 
-export const useRealtimeCollectionWithParams = (collectionName, queryParam) => {
+export const useRealtimeFilteredDocs = (collectionName, queryParam) => {
   const [state, dispatch] = useReducer(realtimeCollectionReducer, initialState)
+  console.log(state)
 
   let cachedQueryParam = useRef(queryParam).current
 
@@ -53,6 +54,11 @@ export const useRealtimeCollectionWithParams = (collectionName, queryParam) => {
   }
 
   useEffect(() => {
+    setIsPending(true)
+    setIsSuccess(false)
+    setIsError(null)
+    setDocuments(null)
+
     let q = query(collection(projectDb, collectionName))
 
     if (cachedQueryParam) {
@@ -66,11 +72,6 @@ export const useRealtimeCollectionWithParams = (collectionName, queryParam) => {
     const unsubscribe = onSnapshot(
       q,
       (querySnapshot) => {
-        setIsPending(true)
-        setIsSuccess(false)
-        setIsError(null)
-        setDocuments(null)
-
         const results = []
         querySnapshot.forEach((doc) => {
           results.push({ ...doc.data(), id: doc.id })
