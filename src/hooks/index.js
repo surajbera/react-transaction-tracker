@@ -11,17 +11,17 @@ import { useRealtimeDocs } from './cloud-firestore/useRealtimeDocs'
 import { useRealtimeFilteredDocs } from './cloud-firestore/useRealtimeFilteredDocs'
 
 /* utilities */
-import { useCustomDelay } from './utilities/useCustomDelay'
-import { useConsole } from './utilities/useConsole'
+import { customDelay } from './utilities/customDelay'
+import { customConsoleLog } from './utilities/customConsoleLog'
 
 export {
   useSignup,
-  useConsole,
+  customConsoleLog,
   useAuthContext,
   useLogout,
   useLogin,
   useAddDoc,
-  useCustomDelay,
+  customDelay,
   useDeleteDoc,
   useRealtimeDocs,
   useRealtimeFilteredDocs,

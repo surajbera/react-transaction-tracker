@@ -2,7 +2,7 @@ import { useReducer } from 'react'
 
 import { collection, addDoc, Timestamp } from 'firebase/firestore'
 import { projectDb } from '../../firebase/config'
-// import { useCustomDelay } from '../useCustomDelay'
+// import { customDelay } from '../customDelay'
 
 const IS_PENDING = 'IS_PENDING'
 const IS_ERROR = 'IS_ERROR'
@@ -57,7 +57,7 @@ export const useAddDoc = () => {
       }
 
       await addDoc(collectionRef, { ...documentData, createdAt, isExpensive })
-      // await useCustomDelay(1000)
+      // await customDelay(1000)
       setIsPending(false)
       setIsError(null)
       setIsSuccess(true)

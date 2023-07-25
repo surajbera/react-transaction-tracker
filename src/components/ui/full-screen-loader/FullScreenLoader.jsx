@@ -1,3 +1,5 @@
+import './full-screen-loader.css'
+
 const FullScreenLoader = () => {
   return (
     <div className='app-loader-icon'>

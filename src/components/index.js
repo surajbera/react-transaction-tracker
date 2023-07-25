@@ -1,5 +1,5 @@
 /* UI's */
-import FullScreenLoader from './ui/FullScreenLoader'
+import FullScreenLoader from './ui/full-screen-loader/FullScreenLoader'
 import PageLayout from './ui/PageLayout'
 
 /* Layouts */

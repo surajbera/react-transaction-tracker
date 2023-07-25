@@ -2,7 +2,7 @@ import { useReducer } from 'react'
 
 import { doc, deleteDoc } from 'firebase/firestore'
 import { projectDb } from '../../firebase/config'
-// import { useCustomDelay } from '../useCustomDelay'
+// import { customDelay } from '../customDelay'
 
 const IS_PENDING = 'IS_PENDING'
 const IS_ERROR = 'IS_ERROR'
@@ -49,7 +49,7 @@ export const useDeleteDoc = () => {
     let returnValue = null
     try {
       returnValue = await deleteDoc(documentRef)
-      // await useCustomDelay(1000)
+      // await customDelay(1000)
       setIsPending(false)
       setIsError(null)
       setIsSuccess(true)

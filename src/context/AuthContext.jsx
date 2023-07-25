@@ -2,13 +2,13 @@ import { createContext, useReducer, useEffect } from 'react'
 
 import { onAuthStateChanged } from 'firebase/auth'
 import { projectAuth } from '../firebase/config'
-import { useConsole } from '../hooks'
+import { customConsoleLog } from '../hooks'
 
 export const AuthContext = createContext()
 
 export const AuthContextProvider = ({ children }) => {
   /* remove this */
-  useConsole('AuthContextProvider ran', '#cbd5e1')
+  customConsoleLog('AuthContextProvider ran', '#cbd5e1')
 
   const LOGIN = 'LOGIN'
   const LOGOUT = 'LOGOUT'

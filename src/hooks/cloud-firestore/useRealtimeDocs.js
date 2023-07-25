@@ -2,7 +2,7 @@ import { useReducer, useEffect } from 'react'
 
 import { projectDb } from '../../firebase/config'
 import { collection, query, onSnapshot } from 'firebase/firestore'
-// import { useCustomDelay } from '../useCustomDelay'
+// import { customDelay } from '../customDelay'
 
 const IS_PENDING = 'IS_PENDING'
 const IS_ERROR = 'IS_ERROR'
@@ -33,10 +33,8 @@ const initialState = {
 
 export const useRealtimeDocs = (collectionName) => {
   const [state, dispatch] = useReducer(realtimeCollectionReducer, initialState)
-  console.log(state)
 
   const setIsPending = (value) => {
-    console.log('isPending', value)
     dispatch({ type: IS_PENDING, payload: value })
   }
 

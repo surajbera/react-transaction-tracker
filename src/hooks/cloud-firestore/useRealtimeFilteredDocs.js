@@ -2,7 +2,7 @@ import { useReducer, useEffect, useRef } from 'react'
 
 import { projectDb } from '../../firebase/config'
 import { collection, query, onSnapshot, where } from 'firebase/firestore'
-// import { useCustomDelay } from '../useCustomDelay'
+// import { customDelay } from '../customDelay'
 
 const IS_PENDING = 'IS_PENDING'
 const IS_ERROR = 'IS_ERROR'
@@ -33,7 +33,6 @@ const initialState = {
 
 export const useRealtimeFilteredDocs = (collectionName, queryParam) => {
   const [state, dispatch] = useReducer(realtimeCollectionReducer, initialState)
-  console.log(state)
 
   let cachedQueryParam = useRef(queryParam).current
 

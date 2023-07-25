@@ -3,7 +3,7 @@ import { useReducer } from 'react'
 import { projectAuth } from '../../firebase/config'
 import { signOut } from 'firebase/auth'
 
-import { useConsole } from '../utilities/useConsole'
+import { customConsoleLog } from '../utilities/customConsoleLog'
 import { useAuthContext } from './useAuthContext'
 
 export const useLogout = () => {
@@ -30,7 +30,7 @@ export const useLogout = () => {
   const [state, dispatch] = useReducer(logoutReducer, initialState)
 
   /* remove this */
-  useConsole('useLogout hook ran', '#93c5fd')
+  customConsoleLog('useLogout hook ran', '#93c5fd')
 
   const setIsPending = (value) => {
     dispatch({ type: IS_PENDING, payload: value })

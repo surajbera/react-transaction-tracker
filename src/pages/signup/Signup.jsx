@@ -9,13 +9,13 @@ const Signup = () => {
   const [displayName, setDisplayName] = useState('')
   const { isPending, isError, signUp } = useSignup()
 
-  const onSubmitHandler = (evt) => {
+  const onSubmitHandler = async (evt) => {
     evt.preventDefault()
     if (displayName.length > 5) {
       alert('Display name cannot be more than 5 characters!')
       return
     }
-    signUp(email, password, displayName)
+    await signUp(email, password, displayName)
   }
 
   return (

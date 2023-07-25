@@ -1,36 +1,43 @@
+/* libraries */
 import { useReducer } from 'react'
 
+/* firebase config */
 import { projectAuth } from '../../firebase/config'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 
-import { useConsole } from '../utilities/useConsole'
+/* utilities */
+import { customConsoleLog } from '../utilities/customConsoleLog'
+
+/* hooks */
 import { useAuthContext } from './useAuthContext'
+import { customDelay } from '../../hooks'
+
+/* constants */
+const IS_PENDING = 'IS_PENDING'
+const IS_ERROR = 'IS_ERROR'
+
+const signUpReducer = (state, action) => {
+  switch (action.type) {
+    case IS_PENDING:
+      return { ...state, isPending: action.payload }
+    case IS_ERROR:
+      return { ...state, isError: action.payload }
+    default:
+      return state
+  }
+}
+
+const initialState = {
+  isPending: false,
+  isError: null,
+}
 
 export const useSignup = () => {
-  const IS_PENDING = 'IS_PENDING'
-  const IS_ERROR = 'IS_ERROR'
+  const [state, dispatch] = useReducer(signUpReducer, initialState)
   const { dispatchLoginEvent } = useAuthContext()
 
-  const signUpReducer = (state, action) => {
-    switch (action.type) {
-      case IS_PENDING:
-        return { ...state, isPending: action.payload }
-      case IS_ERROR:
-        return { ...state, isError: action.payload }
-      default:
-        return state
-    }
-  }
-
-  const initialState = {
-    isPending: false,
-    isError: null,
-  }
-
-  const [state, dispatch] = useReducer(signUpReducer, initialState)
-
   /* remove this */
-  useConsole('useSignup hook ran')
+  customConsoleLog('useSignup hook ran')
 
   const setIsPending = (value) => {
     dispatch({ type: IS_PENDING, payload: value })
@@ -43,15 +50,18 @@ export const useSignup = () => {
   const signUp = async (email, password, displayName) => {
     setIsError(null)
     setIsPending(true)
+
     try {
+      console.log('before')
+      await customDelay(10000)
+      console.log('after')
       const userCredential = await createUserWithEmailAndPassword(projectAuth, email, password)
 
       /* NOTE: We do not need to manually throw the error */
       // if (!userCredential.user) {
       //   throw new Error('Could not complete the signup')
       // }
-      // Even if the internet connection is off, control goes to the catch block, no need to manually throw the error
-
+      // Even if the internet connection is off, control goes to the catch block, no need to manually throw the error, firebase does it automatically
       await updateProfile(projectAuth.currentUser, { displayName })
       dispatchLoginEvent(userCredential.user)
       setIsPending(false)

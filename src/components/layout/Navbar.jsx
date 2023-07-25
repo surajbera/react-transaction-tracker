@@ -6,7 +6,7 @@ import { useLogout } from '../../hooks'
 import { useAuthContext } from '../../hooks'
 
 /* components */
-import FullScreenLoader from '../ui/FullScreenLoader'
+import FullScreenLoader from '../ui/full-screen-loader/FullScreenLoader'
 
 const Navbar = () => {
   const { logOut, isPending } = useLogout()
