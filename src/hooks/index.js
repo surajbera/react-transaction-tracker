@@ -1,6 +1,6 @@
 import { useSignup } from './useSignup'
 import { useConsole } from './utilities/useConsole'
-import { useAuthContext } from './useAuthContext'
+import { useAuthContext } from './auth/useAuthContext'
 import { useLogout } from './useLogout'
 import { useLogin } from './useLogin'
 import { useAddDocument } from './cloud-firestore/useAddDoc'

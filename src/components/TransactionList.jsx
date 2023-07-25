@@ -1,8 +1,6 @@
 import { v4 as uuidv4 } from 'uuid'
 
-import { useDeleteDocument } from '../../hooks'
-
-import styles from './transaction-list.module.css'
+import { useDeleteDocument } from '../hooks'
 
 const TransactionList = ({ transactions }) => {
   const { deleteDocument } = useDeleteDocument()

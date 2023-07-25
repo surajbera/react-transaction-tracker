@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { useAddDocument } from '../../hooks'
-import { LoaderInButton } from '../../components'
+import { useAddDocument } from '../hooks'
+import { LoaderInButton } from '.'
 
 const TransactionForm = ({ userId }) => {
   const [name, setName] = useState('')

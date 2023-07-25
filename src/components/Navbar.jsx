@@ -3,10 +3,10 @@ import { Link, useLocation } from 'react-router-dom'
 
 /* hooks */
 import { useLogout } from '../../hooks/useLogout'
-import { useAuthContext } from '../../hooks'
+import { useAuthContext } from '../hooks'
 
 /* components */
-import Loader from '../loader/Loader'
+import Loader from './Loader'
 
 /* styles */
 import styles from './navbar.module.css'
