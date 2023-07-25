@@ -8,9 +8,9 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const { login, isPending, isError } = useLogin()
 
-  const onSubmitHandler = (evt) => {
+  const onSubmitHandler = async (evt) => {
     evt.preventDefault()
-    login(email, password)
+    await login(email, password)
   }
 
   return (

@@ -5,6 +5,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 
 import { customConsoleLog } from '../utilities/customConsoleLog'
 import { useAuthContext } from './useAuthContext'
+import { customDelay } from '../utilities/customDelay'
 
 export const useLogin = () => {
   const IS_PENDING = 'IS_PENDING'
@@ -51,9 +52,9 @@ export const useLogin = () => {
       //   throw new Error('Could not complete the login')
       // }
       // Even if the internet connection is off, control goes to the catch block, no need to manually throw the error
-      dispatchLoginEvent(userCredential.user)
       setIsPending(false)
       setIsError(null)
+      dispatchLoginEvent(userCredential.user)
     } catch (error) {
       console.log(error.message)
       setIsPending(false)

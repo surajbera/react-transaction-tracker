@@ -52,9 +52,6 @@ export const useSignup = () => {
     setIsPending(true)
 
     try {
-      console.log('before')
-      await customDelay(10000)
-      console.log('after')
       const userCredential = await createUserWithEmailAndPassword(projectAuth, email, password)
 
       /* NOTE: We do not need to manually throw the error */
@@ -63,9 +60,9 @@ export const useSignup = () => {
       // }
       // Even if the internet connection is off, control goes to the catch block, no need to manually throw the error, firebase does it automatically
       await updateProfile(projectAuth.currentUser, { displayName })
-      dispatchLoginEvent(userCredential.user)
       setIsPending(false)
       setIsError(null)
+      dispatchLoginEvent(userCredential.user)
     } catch (error) {
       console.log(error.message)
       setIsPending(false)
