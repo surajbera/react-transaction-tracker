@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useAddDocument } from '../hooks'
-import { LoaderInButton } from '.'
+import { useAddDocument } from '../../hooks'
 
 const TransactionForm = ({ userId }) => {
   const [name, setName] = useState('')
@@ -37,7 +36,7 @@ const TransactionForm = ({ userId }) => {
           />
         </label>
         {!isPending && <button>Add Transaction</button>}
-        {isPending && <LoaderInButton />}
+        {isPending && <button disabled>Adding Transaction</button>}
       </form>
     </>
   )

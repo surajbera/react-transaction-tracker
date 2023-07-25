@@ -2,26 +2,18 @@
 import { Link, useLocation } from 'react-router-dom'
 
 /* hooks */
-import { useLogout } from '../../hooks/useLogout'
-import { useAuthContext } from '../hooks'
+import { useLogout } from '../../hooks'
+import { useAuthContext } from '../../hooks'
 
 /* components */
-import Loader from './Loader'
-
-/* styles */
-import styles from './navbar.module.css'
+import FullScreenLoader from '../ui/FullScreenLoader'
 
 const Navbar = () => {
   const { logOut, isPending } = useLogout()
   const { authUser } = useAuthContext()
   const { pathname } = useLocation()
 
-  const activeRouteStyles = {
-    backgroundColor: '#2563eb',
-    color: '#fff',
-    borderRadius: '3px',
-    padding: '5px 10px',
-  }
+  const activeRouteStyles = {}
 
   const onLogoutHandler = async () => {
     await logOut()
@@ -29,9 +21,9 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={styles.navbar}>
+      <nav>
         <ul>
-          <li className={styles.title}>
+          <li>
             <Link to='/'>T-Tracker</Link>
           </li>
           {!authUser && (
@@ -55,7 +47,7 @@ const Navbar = () => {
           )}
         </ul>
       </nav>
-      {isPending && <Loader />}
+      {isPending && <FullScreenLoader />}
     </>
   )
 }

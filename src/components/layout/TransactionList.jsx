@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid'
 
-import { useDeleteDocument } from '../hooks'
+import { useDeleteDocument } from '../../hooks'
 
 const TransactionList = ({ transactions }) => {
   const { deleteDocument } = useDeleteDocument()
@@ -10,11 +10,11 @@ const TransactionList = ({ transactions }) => {
   }
 
   return (
-    <ul className={styles.transactions}>
+    <ul>
       {transactions.map((transaction) => (
         <li key={uuidv4()}>
-          <p className={styles.name}>{transaction.name}</p>
-          <p className={styles.amount}>₹{transaction.amount}</p>
+          <p>{transaction.name}</p>
+          <p>₹{transaction.amount}</p>
           <button onClick={() => handleDelete(transaction.id)}>x</button>
         </li>
       ))}

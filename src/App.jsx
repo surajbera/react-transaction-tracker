@@ -5,7 +5,7 @@ import { Login } from './pages'
 import { Signup } from './pages'
 import { NotFound } from './pages'
 
-import { Loader } from './components'
+import { FullScreenLoader } from './components'
 import { PageLayout } from './components'
 
 import { useAuthContext } from './hooks'
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className='root-inner'>
-      {!isAuthReady && <Loader />}
+      {!isAuthReady && <FullScreenLoader />}
       {isAuthReady && (
         <Router>
           <Routes>

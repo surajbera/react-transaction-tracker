@@ -1,9 +1,7 @@
 import { useState } from 'react'
 import { useSignup } from '../../hooks'
 
-import { Loader } from '../../components'
-
-import styles from './signup.module.css'
+import { FullScreenLoader } from '../../components'
 
 const Signup = () => {
   const [email, setEmail] = useState('')
@@ -22,7 +20,7 @@ const Signup = () => {
 
   return (
     <div className='form-container'>
-      <form className={styles['signup-form']} onSubmit={onSubmitHandler}>
+      <form onSubmit={onSubmitHandler}>
         <h2>Signup</h2>
         <label>
           <span>Email: </span>
@@ -60,16 +58,16 @@ const Signup = () => {
           />
         </label>
 
-        {/* {isPending ? (
+        {isPending ? (
           <button className='btn' disabled>
             Loading...
           </button>
         ) : (
           <button className='btn'>Signup</button>
-        )} */}
+        )}
       </form>
       {isError && <p className='error-text'>{isError}</p>}
-      {isPending && <Loader />}
+      {isPending && <FullScreenLoader />}
     </div>
   )
 }

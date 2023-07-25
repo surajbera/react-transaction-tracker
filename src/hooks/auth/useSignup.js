@@ -1,9 +1,9 @@
 import { useReducer } from 'react'
 
-import { projectAuth } from '../firebase/config'
+import { projectAuth } from '../../firebase/config'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 
-import { useConsole } from './utilities/useConsole'
+import { useConsole } from '../utilities/useConsole'
 import { useAuthContext } from './useAuthContext'
 
 export const useSignup = () => {

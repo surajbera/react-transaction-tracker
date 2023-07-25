@@ -1,7 +1,10 @@
-import Navbar from './Navbar'
-import Loader from './Loader'
-import PageLayout from './PageLayout'
-import LoaderInButton from './LoaderInButton'
-import TransactionList from './TransactionList'
+/* UI's */
+import FullScreenLoader from './ui/FullScreenLoader'
+import PageLayout from './ui/PageLayout'
 
-export { Navbar, Loader, PageLayout, LoaderInButton, TransactionList }
+/* Layouts */
+import Navbar from './layout/Navbar'
+import TransactionList from './layout/TransactionList'
+import TransactionForm from './layout/TransactionForm'
+
+export { Navbar, FullScreenLoader, PageLayout, TransactionList, TransactionForm }

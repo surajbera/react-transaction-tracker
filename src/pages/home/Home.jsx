@@ -1,8 +1,5 @@
-// styles
-import styles from './home.module.css'
-
 // components
-import TransactionForm from './TransactionForm'
+import { TransactionForm } from '../../components'
 import { TransactionList } from '../../components'
 
 /* hooks */
@@ -20,19 +17,19 @@ const Home = () => {
 
   return (
     <div>
-      <div className={styles['user-info-wrap']}>
-        <div className={styles['user-info-container']}>
-          <p className={styles['user-info']}>Currently logged in as {authUser.email}</p>
+      <div>
+        <div>
+          <p>Currently logged in as {authUser.email}</p>
         </div>
       </div>
-      <div className={styles['home-container']}>
-        <div className={styles.content}>
+      <div>
+        <div>
           {isPending && <p>Loading Documents...</p>}
           {documents && <TransactionList transactions={documents} />}
           {isError && <p>Could not fetch data!!!</p>}
           {documents && documents.length < 1 && <p>No Transactions Found!!!</p>}
         </div>
-        <div className={styles.sidebar}>
+        <div>
           <TransactionForm userId={userId} />
         </div>
       </div>

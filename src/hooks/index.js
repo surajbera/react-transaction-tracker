@@ -1,13 +1,18 @@
-import { useSignup } from './useSignup'
-import { useConsole } from './utilities/useConsole'
+/* auth */
+import { useSignup } from './auth/useSignup'
 import { useAuthContext } from './auth/useAuthContext'
-import { useLogout } from './useLogout'
-import { useLogin } from './useLogin'
+import { useLogout } from './auth/useLogout'
+import { useLogin } from './auth/useLogin'
+
+/* cloud firestore */
 import { useAddDocument } from './cloud-firestore/useAddDoc'
 import { useDeleteDocument } from './cloud-firestore/useDeleteDoc'
 import { useRealtimeCollection } from './cloud-firestore/useRealtimeDocs'
 import { useRealtimeCollectionWithParams } from './cloud-firestore/useRealtimeFilteredDocs'
-import { useCustomDelay } from './useCustomDelay'
+
+/* utilities */
+import { useCustomDelay } from './utilities/useCustomDelay'
+import { useConsole } from './utilities/useConsole'
 
 export {
   useSignup,

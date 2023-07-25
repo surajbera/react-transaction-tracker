@@ -1,6 +1,4 @@
-import './Loader.css'
-
-const Loader = () => {
+const FullScreenLoader = () => {
   return (
     <div className='app-loader-icon'>
       <div className='sk-folding-cube'>
@@ -13,4 +11,4 @@ const Loader = () => {
   )
 }
 
-export default Loader
+export default FullScreenLoader
