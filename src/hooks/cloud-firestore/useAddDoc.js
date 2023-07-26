@@ -1,6 +1,6 @@
 import { useReducer } from 'react'
 
-import { collection, addDoc, Timestamp } from 'firebase/firestore'
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { projectDb } from '../../firebase/config'
 // import { customDelay } from '../customDelay'
 
@@ -47,8 +47,8 @@ export const useAddDoc = () => {
     setIsSuccess(false)
     const collectionRef = collection(projectDb, collectionName)
     try {
-      /* we don't just add in the Date object, because firebase won't be able to order them correctly, instead we make use of the Timestamp object */
-      const createdAt = Timestamp.fromDate(new Date())
+      /* If we use just the Date object, firebase won't be able to order the documents, instead we make use of the Timestamp object */
+      const createdAt = serverTimestamp()
 
       const amount = Number(documentData.amount)
       let isExpensive = false
