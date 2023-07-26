@@ -5,6 +5,7 @@ const PageLayout = () => {
   const location = useLocation()
   let isNotFoundPage = false
   const validPages = ['/', '/signup', '/login']
+
   if (!validPages.includes(location.pathname)) {
     isNotFoundPage = true
   }
