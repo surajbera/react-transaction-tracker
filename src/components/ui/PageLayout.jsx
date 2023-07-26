@@ -13,7 +13,7 @@ const PageLayout = () => {
 
   /* identifying 404 page */
   let isNotFoundPage = false;
-  const validPages = ['/', '/signup', '/login'];
+  const validPages = ['/', '/signup', '/login', '/forgot-password'];
   if (!validPages.includes(location.pathname)) {
     isNotFoundPage = true;
   }
@@ -21,7 +21,7 @@ const PageLayout = () => {
   return (
     <>
       {isHeader && <Navbar />}
-      <div className={`app-content-wrap flex-1 ${isNotFoundPage ? 'not-found-page' : ''}`}>
+      <div className={`app-content-wrap flex flex-1 ${isNotFoundPage ? 'not-found-page' : ''}`}>
         <Outlet />
       </div>
     </>

@@ -4,6 +4,7 @@ import { Home } from './pages';
 import { Login } from './pages';
 import { Signup } from './pages';
 import { NotFound } from './pages';
+import { ForgotPassword } from './pages';
 
 import { FullScreenLoader } from './components';
 import { PageLayout } from './components';
@@ -25,6 +26,7 @@ function App() {
               <Route path='/' element={authUser ? <Home /> : <Navigate to='/login' />} />
               <Route path='/login' element={!authUser ? <Login /> : <Navigate to='/' />} />
               <Route path='/signup' element={!authUser ? <Signup /> : <Navigate to='/' />} />
+              <Route path='/forgot-password' element={<ForgotPassword />} />
               <Route path='*' element={<NotFound />} />
             </Route>
           </Routes>

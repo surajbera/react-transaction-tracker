@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { useLogin } from '../../hooks';
 import { FullScreenLoader } from '../../components';
@@ -107,12 +108,12 @@ const Login = () => {
                   </label>
                 </div>
               </div>
-              <a
-                href='#'
+              <Link
+                to='/forgot-password'
                 className='text-sm font-medium text-primary-600 hover:underline dark:text-primary-500'
               >
                 Forgot password?
-              </a>
+              </Link>
             </div>
             <button
               type='submit'
@@ -122,12 +123,12 @@ const Login = () => {
             </button>
             <p className='text-sm font-light text-gray-500 dark:text-gray-400'>
               Don’t have an account yet?{' '}
-              <a
-                href='#'
+              <Link
+                to='/signup'
                 className='font-medium text-primary-600 hover:underline dark:text-primary-500'
               >
                 Sign up
-              </a>
+              </Link>
             </p>
           </form>
         </div>
