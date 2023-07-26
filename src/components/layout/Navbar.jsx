@@ -1,31 +1,31 @@
 /* libraries */
-import { Link, useLocation, useMatch } from 'react-router-dom'
-import classNames from 'classnames'
+import { Link, useLocation, useMatch } from 'react-router-dom';
+import classNames from 'classnames';
 
 /* hooks */
-import { useLogout } from '../../hooks'
-import { useAuthContext } from '../../hooks'
+import { useLogout } from '../../hooks';
+import { useAuthContext } from '../../hooks';
 
 /* components */
-import FullScreenLoader from '../ui/full-screen-loader/FullScreenLoader'
+import FullScreenLoader from '../ui/full-screen-loader/FullScreenLoader';
 
 const Navbar = () => {
   // const { logOut, isPending } = useLogout()
   // const { authUser } = useAuthContext()
   // const { pathname } = useLocation()
 
-  const isLoginRoute = useMatch('/login')
-  const isSignupRoute = useMatch('/signup')
+  const isLoginRoute = useMatch('/login');
+  const isSignupRoute = useMatch('/signup');
 
-  const activeRouteStyles = {}
+  const activeRouteStyles = {};
 
   // const onLogoutHandler = async () => {
   //   await logOut()
   // }
 
   const isRouteMatched = () => {
-    return false
-  }
+    return false;
+  };
 
   const authLinkCLasses = (isMatched) => {
     return classNames([
@@ -52,8 +52,8 @@ const Navbar = () => {
       { 'dark:bg-primary-600': isMatched },
       { 'dark:hover:bg-primary-700': isMatched },
       { 'dark:focus:ring-primary-800': isMatched },
-    ])
-  }
+    ]);
+  };
 
   return (
     // <>
@@ -106,7 +106,7 @@ const Navbar = () => {
         </div>
       </nav>
     </header>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

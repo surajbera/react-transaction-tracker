@@ -1,22 +1,22 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
-import { Home } from './pages'
-import { Login } from './pages'
-import { Signup } from './pages'
-import { NotFound } from './pages'
+import { Home } from './pages';
+import { Login } from './pages';
+import { Signup } from './pages';
+import { NotFound } from './pages';
 
-import { FullScreenLoader } from './components'
-import { PageLayout } from './components'
+import { FullScreenLoader } from './components';
+import { PageLayout } from './components';
 
-import { useAuthContext } from './hooks'
+import { useAuthContext } from './hooks';
 
-import './App.css'
+import './App.css';
 
 function App() {
-  const { isAuthReady, authUser } = useAuthContext()
+  const { isAuthReady, authUser } = useAuthContext();
 
   return (
-    <div className='root-inner'>
+    <div className='root-inner flex flex-col'>
       {!isAuthReady && <FullScreenLoader />}
       {isAuthReady && (
         <Router>
@@ -31,7 +31,7 @@ function App() {
         </Router>
       )}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
