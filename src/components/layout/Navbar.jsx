@@ -91,7 +91,7 @@ const Navbar = () => {
         <div className='flex flex-wrap justify-between items-center mx-auto max-w-screen-xl'>
           <div className='app-logo'>
             <Link to='/' className='text-xl font-semibold whitespace-nowrap dark:text-white'>
-              TrackIt
+              TrackIt!
             </Link>
           </div>
 

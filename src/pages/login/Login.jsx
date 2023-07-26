@@ -2,9 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useLogin } from '../../hooks';
-import { FullScreenLoader } from '../../components';
-
-import AuthPageImg from '../../assets/login-page-img/track-it-img-1.jpg';
+import { AuthPageBackground, FullScreenLoader } from '../../components';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -52,11 +50,12 @@ const Login = () => {
     //   {isPending && <FullScreenLoader />}
     // </div>
 
-    <section className='bg-gray-50 dark:bg-gray-900 h-screen auth-screen flex'>
+    <section className='bg-gray-50 dark:bg-gray-900 h-screen auth-screen flex w-full'>
       <div className='bg-white rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700 flex justify-center items-center flex-col'>
         <div className='p-6 space-y-4 md:space-y-6 sm:p-8 w-9/12 max-w-[500px]'>
           <h1 className='text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white'>
-            Sign in to your account
+            <p className='my-4'>TrackIt!</p>
+            <p>Sign in to your account</p>
           </h1>
           <form className='space-y-4 md:space-y-6' action='#'>
             <div>
@@ -93,20 +92,7 @@ const Login = () => {
             </div>
             <div className='flex items-center justify-between'>
               <div className='flex items-start'>
-                <div className='flex items-center h-5'>
-                  <input
-                    id='remember'
-                    aria-describedby='remember'
-                    type='checkbox'
-                    className='w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800'
-                    required=''
-                  />
-                </div>
-                <div className='ml-3 text-sm'>
-                  <label htmlFor='remember' className='text-gray-500 dark:text-gray-300'>
-                    Remember me
-                  </label>
-                </div>
+                <div className='flex items-center h-5'></div>
               </div>
               <Link
                 to='/forgot-password'
@@ -133,15 +119,11 @@ const Login = () => {
           </form>
         </div>
       </div>
-      <div className=''>
-        <img src={AuthPageImg} alt='' className='w-full h-full object-cover' />
+      <div className='bg-blend-multiply'>
+        <AuthPageBackground />
       </div>
     </section>
   );
 };
 
 export default Login;
-
-/* 
-  Stay on top of your finances with TrackIt, the smart solution to monitor, analyze, and track your transactions. Simplify your life, gain insights into your spending, and keep your financial goals on track. Sign up today and take the first step towards better financial management.
-*/
