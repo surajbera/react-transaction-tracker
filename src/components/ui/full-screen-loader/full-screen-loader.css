@@ -8,6 +8,8 @@
   place-items: center;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 9999;
+  margin: 0;
+  padding: 0;
 }
 
 .sk-folding-cube {
