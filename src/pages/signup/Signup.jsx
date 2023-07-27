@@ -182,7 +182,7 @@ const Signup = () => {
                   to='/sign-in'
                   className='font-medium text-primary-600 hover:underline dark:text-primary-500'
                 >
-                  Sign Up
+                  Sign In
                 </Link>
               </p>
             </form>
