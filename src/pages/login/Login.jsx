@@ -51,8 +51,8 @@ const Login = () => {
     // </div>
 
     <section className='bg-gray-50 dark:bg-gray-900 h-screen auth-screen flex w-full'>
-      <div className='bg-white rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700 flex justify-center items-center flex-col'>
-        <div className='p-6 space-y-4 md:space-y-6 sm:p-8 w-9/12 max-w-[500px]'>
+      <div className='bg-white rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700 flex items-center justify-end'>
+        <div className='space-y-4 md:space-y-6 w-9/12 max-w-[550px] pr-24 pl-14'>
           <h1 className='text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white'>
             <p className='my-4'>TrackIt!</p>
             <p>Sign in to your account</p>
@@ -119,7 +119,7 @@ const Login = () => {
           </form>
         </div>
       </div>
-      <div className='bg-blend-multiply'>
+      <div>
         <AuthPageBackground />
       </div>
     </section>
