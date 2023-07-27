@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+::selection {
+  background-color: #d1fae5; /* primary.200 color */
+  color: #000;
+}
+
 .root-inner {
   min-height: 100vh;
 }
