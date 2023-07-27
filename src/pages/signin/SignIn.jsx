@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
+import { AiFillEyeInvisible } from 'react-icons/ai';
+import { AiFillEye } from 'react-icons/ai';
 
 import { useSignin } from '../../hooks';
 import { AuthPageBackground, ErrorAlert, FullScreenLoader } from '../../components';
@@ -8,6 +10,7 @@ import { AuthPageBackground, ErrorAlert, FullScreenLoader } from '../../componen
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const { login, isPending, isError, resetError } = useSignin();
 
   const onSubmitHandler = async (evt) => {
@@ -63,18 +66,26 @@ const SignIn = () => {
               >
                 Password
               </label>
-              <input
-                type='password'
-                name='password'
-                id='password'
-                placeholder='••••••••'
-                className={formInputClasses()}
-                required
-                value={password}
-                onChange={(evt) => {
-                  setPassword(evt.target.value);
-                }}
-              />
+              <div className='relative'>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  name='password'
+                  id='password'
+                  placeholder='••••••••'
+                  className={formInputClasses()}
+                  required
+                  value={password}
+                  onChange={(evt) => {
+                    setPassword(evt.target.value);
+                  }}
+                />
+                <span
+                  className='absolute right-[10px] top-1/2 -translate-y-2/4'
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
+                </span>
+              </div>
             </div>
             <div className='flex items-center justify-between'>
               <div className='flex items-start'>
