@@ -1,18 +1,17 @@
 import { useReducer } from 'react';
 
 import { projectAuth } from '../../firebase/config';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signOut } from 'firebase/auth';
 
 import { customConsoleLog } from '../utilities/customConsoleLog';
 import { useAuthContext } from './useAuthContext';
-import { customDelay } from '../utilities/customDelay';
 
-export const useLogin = () => {
+export const useSignout = () => {
   const IS_PENDING = 'IS_PENDING';
   const IS_ERROR = 'IS_ERROR';
-  const { dispatchLoginEvent } = useAuthContext();
+  const { dispatchLogoutEvent } = useAuthContext();
 
-  const loginReducer = (state, action) => {
+  const logoutReducer = (state, action) => {
     switch (action.type) {
       case IS_PENDING:
         return { ...state, isPending: action.payload };
@@ -28,10 +27,10 @@ export const useLogin = () => {
     isError: null,
   };
 
-  const [state, dispatch] = useReducer(loginReducer, initialState);
+  const [state, dispatch] = useReducer(logoutReducer, initialState);
 
   /* remove this */
-  customConsoleLog('useLogin hook ran', '#d9f99d');
+  customConsoleLog('useSignout hook ran', '#93c5fd');
 
   const setIsPending = (value) => {
     dispatch({ type: IS_PENDING, payload: value });
@@ -41,22 +40,14 @@ export const useLogin = () => {
     dispatch({ type: IS_ERROR, payload: value });
   };
 
-  const login = async (email, password) => {
+  const logOut = async () => {
     setIsError(null);
     setIsPending(true);
-
     try {
-      const userCredential = await signInWithEmailAndPassword(projectAuth, email, password);
-
-      /* NOTE: We do not need to manually throw the error */
-      // if (!userCredential.user) {
-      //   throw new Error('Could not complete the login')
-      // }
-      // Even if the internet connection is off, control goes to the catch block, no need to manually throw the error
-
+      await signOut(projectAuth);
+      dispatchLogoutEvent();
       setIsPending(false);
       setIsError(null);
-      dispatchLoginEvent(userCredential.user);
     } catch (error) {
       console.log(error.message);
       setIsPending(false);
@@ -64,7 +55,7 @@ export const useLogin = () => {
     }
   };
 
-  const value = { ...state, login };
+  const value = { ...state, logOut };
 
   return value;
 };

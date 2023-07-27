@@ -1,6 +1,7 @@
 /* UI's */
 import FullScreenLoader from './ui/full-screen-loader/FullScreenLoader';
 import PageLayout from './ui/PageLayout';
+import ErrorAlert from './ui/ErrorAlert';
 
 /* Layouts */
 import Navbar from './layout/Navbar';
@@ -15,4 +16,5 @@ export {
   TransactionList,
   TransactionForm,
   AuthPageBackground,
+  ErrorAlert,
 };

@@ -3,19 +3,19 @@ import { Link, useLocation, useMatch } from 'react-router-dom';
 import classNames from 'classnames';
 
 /* hooks */
-import { useLogout } from '../../hooks';
+import { useSignout } from '../../hooks';
 import { useAuthContext } from '../../hooks';
 
 /* components */
 import FullScreenLoader from '../ui/full-screen-loader/FullScreenLoader';
 
 const Navbar = () => {
-  const { logOut, isPending } = useLogout();
+  const { logOut, isPending } = useSignout();
   // const { authUser } = useAuthContext()
   // const { pathname } = useLocation()
 
-  const isLoginRoute = useMatch('/login');
-  const isSignupRoute = useMatch('/signup');
+  const isLoginRoute = useMatch('/sign-in');
+  const isSignupRoute = useMatch('/sign-up');
 
   const activeRouteStyles = {};
 
@@ -97,13 +97,13 @@ const Navbar = () => {
 
           <div className='flex items-center lg:order-2'>
             <Link to='/sign-in' className={authLinkCLasses(isLoginRoute)}>
-              Signin
+              Sign In
             </Link>
             <Link to='/sign-up' className={authLinkCLasses(isSignupRoute)}>
-              Signup
+              Sign Up
             </Link>
             <li>
-              <span onClick={onLogoutHandler}>Logout</span>
+              <span onClick={onLogoutHandler}>Sign Out</span>
             </li>
           </div>
         </div>

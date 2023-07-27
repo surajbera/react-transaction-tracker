@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
-import { useLogin } from '../../hooks';
-import { AuthPageBackground, FullScreenLoader } from '../../components';
+import { useSignin } from '../../hooks';
+import { AuthPageBackground, ErrorAlert, FullScreenLoader } from '../../components';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login, isPending, isError } = useLogin();
+  const { login, isPending, isError, resetError } = useSignin();
 
   const onSubmitHandler = async (evt) => {
     evt.preventDefault();
@@ -32,7 +32,7 @@ const SignIn = () => {
       <div className='bg-white rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700 flex items-center justify-end'>
         <div className='space-y-4 md:space-y-6 w-10/12 max-w-[550px] pr-24 pl-14'>
           <h1 className='text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white'>
-            <p className='my-4'>TrackIt!</p>
+            <p className='my-4 text-4xl'>TrackIt!</p>
             <p>Sign in to your account</p>
           </h1>
           <form className='space-y-4 md:space-y-6' onSubmit={onSubmitHandler}>
@@ -106,7 +106,7 @@ const SignIn = () => {
               </Link>
             </p>
           </form>
-          {isError && <p className='error-text'>{isError}</p>}
+          {isError && <ErrorAlert text={isError} closeAlert={() => resetError()} />}
           {isPending && <FullScreenLoader />}
         </div>
       </div>
