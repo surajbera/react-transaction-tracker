@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import classNames from 'classnames';
 
 /* firebase imports */
 import { sendPasswordResetEmail } from 'firebase/auth';
@@ -6,13 +9,29 @@ import { projectAuth } from '../../firebase/config';
 
 const ForgotPassword = () => {
   const [resetEmail, setResetEmail] = useState('');
+  const [isPending, setIsPending] = useState(false);
+  const navigate = useNavigate();
+
+  const submitBtnClasses = () => {
+    return classNames(
+      'w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800'
+    );
+  };
 
   const onSubmitHandler = async (evt) => {
     evt.preventDefault();
     if (resetEmail === '') return;
-
-    await sendPasswordResetEmail(projectAuth, resetEmail);
-    console.log('Reset email sent');
+    setIsPending(true);
+    try {
+      await sendPasswordResetEmail(projectAuth, resetEmail);
+      setIsPending(false);
+      navigate('/sign-in');
+      toast.success('Verification email sent, check your email!');
+    } catch (error) {
+      setIsPending(false);
+      console.log(error);
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -44,11 +63,8 @@ const ForgotPassword = () => {
                 required=''
               />
             </div>
-            <button
-              type='submit'
-              className='w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800'
-            >
-              Reset password
+            <button type='submit' className={submitBtnClasses()}>
+              {isPending ? 'Sending Verification Link...' : 'Reset Password'}
             </button>
           </form>
         </div>

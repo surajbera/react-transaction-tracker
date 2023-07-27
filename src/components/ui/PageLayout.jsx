@@ -6,14 +6,14 @@ const PageLayout = () => {
 
   /* identifying auth page */
   let isHeader = true;
-  const noHeaderPages = ['/signup', '/login'];
+  const noHeaderPages = ['/sign-up', '/sign-in'];
   if (noHeaderPages.includes(location.pathname)) {
     isHeader = false;
   }
 
   /* identifying 404 page */
   let isNotFoundPage = false;
-  const validPages = ['/', '/signup', '/login', '/forgot-password'];
+  const validPages = ['/', '/sign-up', '/sign-in', '/forgot-password'];
   if (!validPages.includes(location.pathname)) {
     isNotFoundPage = true;
   }

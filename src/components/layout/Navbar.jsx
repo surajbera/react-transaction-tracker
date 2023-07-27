@@ -10,7 +10,7 @@ import { useAuthContext } from '../../hooks';
 import FullScreenLoader from '../ui/full-screen-loader/FullScreenLoader';
 
 const Navbar = () => {
-  // const { logOut, isPending } = useLogout()
+  const { logOut, isPending } = useLogout();
   // const { authUser } = useAuthContext()
   // const { pathname } = useLocation()
 
@@ -19,9 +19,9 @@ const Navbar = () => {
 
   const activeRouteStyles = {};
 
-  // const onLogoutHandler = async () => {
-  //   await logOut()
-  // }
+  const onLogoutHandler = async () => {
+    await logOut();
+  };
 
   const isRouteMatched = () => {
     return false;
@@ -96,12 +96,15 @@ const Navbar = () => {
           </div>
 
           <div className='flex items-center lg:order-2'>
-            <Link to='/login' className={authLinkCLasses(isLoginRoute)}>
-              Login
+            <Link to='/sign-in' className={authLinkCLasses(isLoginRoute)}>
+              Signin
             </Link>
-            <Link to='/signup' className={authLinkCLasses(isSignupRoute)}>
+            <Link to='/sign-up' className={authLinkCLasses(isSignupRoute)}>
               Signup
             </Link>
+            <li>
+              <span onClick={onLogoutHandler}>Logout</span>
+            </li>
           </div>
         </div>
       </nav>
