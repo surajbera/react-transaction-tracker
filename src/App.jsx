@@ -1,14 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
-import { Home } from './pages';
-import { SignIn } from './pages';
-import { Signup } from './pages';
-import { NotFound } from './pages';
-import { ForgotPassword } from './pages';
-
-import { FullScreenLoader } from './components';
-import { PageLayout } from './components';
+import { Home, SignIn, Signup, NotFound, ForgotPassword } from './pages';
+import { FullScreenLoader, PageLayout } from './components';
 
 import { useAuthContext } from './hooks';
 

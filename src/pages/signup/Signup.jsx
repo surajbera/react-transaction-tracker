@@ -8,8 +8,7 @@ import { useSignup } from '../../hooks';
 import { AuthPageBackground, ErrorAlert, FullScreenLoader } from '../../components';
 
 /* icons */
-import { AiFillEyeInvisible } from 'react-icons/ai';
-import { AiFillEye } from 'react-icons/ai';
+import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
 
 const Signup = () => {
   const [email, setEmail] = useState('');

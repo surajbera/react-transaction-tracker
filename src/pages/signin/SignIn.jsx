@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
-import { AiFillEyeInvisible } from 'react-icons/ai';
-import { AiFillEye } from 'react-icons/ai';
+import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
 
 import { useSignin } from '../../hooks';
 import { AuthPageBackground, ErrorAlert, FullScreenLoader } from '../../components';
