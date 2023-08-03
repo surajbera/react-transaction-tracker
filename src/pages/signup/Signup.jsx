@@ -91,8 +91,8 @@ const Signup = () => {
     // </div>
     <>
       <section className='bg-gray-50 dark:bg-gray-900 h-screen auth-screen flex w-full'>
-        <div className='bg-white rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700 flex items-center justify-end'>
-          <div className='space-y-4 md:space-y-6 w-10/12 max-w-[550px] pr-24 pl-14'>
+        <div className='bg-white rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700 flex items-center w-full'>
+          <div className='space-y-4 md:space-y-6 w-full p-6'>
             <h1 className='text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white'>
               <p className='my-4 text-4xl'>TrackIt!</p>
               <p>Create an account</p>
@@ -188,7 +188,7 @@ const Signup = () => {
             {isError && <ErrorAlert text={isError} closeAlert={() => resetError()} />}
           </div>
         </div>
-        <div>
+        <div className='hidden'>
           <AuthPageBackground />
         </div>
       </section>
