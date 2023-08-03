@@ -11,7 +11,7 @@
   min-height: 100vh;
 }
 
-.auth-screen > * {
+/* .auth-screen > * {
   flex: 1 1 50%;
   max-width: 50%;
-}
+} */
