@@ -46,12 +46,12 @@ export const useSignout = () => {
     try {
       await signOut(projectAuth);
       dispatchLogoutEvent();
-      setIsPending(false);
       setIsError(null);
     } catch (error) {
       console.log(error.message);
-      setIsPending(false);
       setIsError(error.message);
+    } finally {
+      setIsPending(false);
     }
   };
 

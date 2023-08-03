@@ -60,13 +60,13 @@ export const useSignin = () => {
       // }
       // Even if the internet connection is off, control goes to the catch block, no need to manually throw the error
 
-      setIsPending(false);
       setIsError(null);
       dispatchLoginEvent(userCredential.user);
     } catch (error) {
       console.log(error.message);
-      setIsPending(false);
       setIsError(error.message);
+    } finally {
+      setIsPending(false);
     }
   };
 
