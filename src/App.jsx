@@ -1,9 +1,14 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+/* libraries */
+import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
+/* pages */
 import { Home, SignIn, Signup, NotFound, ForgotPassword } from './pages';
-import { FullScreenLoader, PageLayout } from './components';
 
+/* components */
+import { FullScreenLoader, PageLayout, PageLayoutWithoutNavbar } from './components';
+
+/* hooks */
 import { useAuthContext } from './hooks';
 
 import './App.css';
@@ -12,22 +17,45 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
   const { isAuthReady, authUser } = useAuthContext();
 
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <PageLayout />,
+      errorElement: <NotFound />,
+      children: [
+        {
+          index: true,
+          element: authUser ? <Home /> : <Navigate to='/sign-in' />
+        },
+        {
+          path: 'forgot-password',
+          element: <ForgotPassword />
+        },
+      ]
+    },
+    {
+      path: '/',
+      element: <PageLayoutWithoutNavbar />,
+      errorElement: <NotFound />,
+      children: [
+        {
+          path: 'sign-in',
+          element: !authUser ? <SignIn /> : <Navigate to='/' />
+        },
+        {
+          path: 'sign-up',
+          element: !authUser ? <Signup /> : <Navigate to='/' />
+        },
+      ]
+    }
+  ])
+
   return (
     <div className='root-inner flex flex-col'>
       {!isAuthReady && <FullScreenLoader />}
       {isAuthReady && (
         <>
-          <Router>
-            <Routes>
-              <Route element={<PageLayout />}>
-                <Route path='/' element={authUser ? <Home /> : <Navigate to='/sign-in' />} />
-                <Route path='/sign-in' element={!authUser ? <SignIn /> : <Navigate to='/' />} />
-                <Route path='/sign-up' element={!authUser ? <Signup /> : <Navigate to='/' />} />
-                <Route path='/forgot-password' element={<ForgotPassword />} />
-                <Route path='*' element={<NotFound />} />
-              </Route>
-            </Routes>
-          </Router>
+          <RouterProvider router={router} />
           <ToastContainer />
         </>
       )}
