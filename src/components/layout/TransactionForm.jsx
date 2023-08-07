@@ -1,7 +1,10 @@
+/* libraries */
 import { useState, useEffect } from 'react';
+/* hooks */
 import { useAddDoc } from '../../hooks';
 
 const TransactionForm = ({ userId, toggleModal, isModalOpen }) => {
+  console.log(isModalOpen);
   const [name, setName] = useState('');
   const [amount, setAmount] = useState('');
   const { isPending, isSuccess, addDocument } = useAddDoc();
@@ -44,9 +47,6 @@ const TransactionForm = ({ userId, toggleModal, isModalOpen }) => {
         aria-hidden={!isModalOpen}
         className='overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal h-full'
       >
-        {/* Overlay with transparent black background */}
-        <div className='absolute inset-0 bg-black opacity-50'></div>
-
         {/* Modal content */}
         <div className='relative p-4 w-full max-w-2xl h-full md:h-auto mx-auto'>
           <div className='relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5'>

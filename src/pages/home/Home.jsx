@@ -1,4 +1,6 @@
+/* libraries */
 import { useState } from 'react';
+import { CSSTransition } from 'react-transition-group';
 
 // components
 import { TransactionForm } from '../../components';
@@ -17,6 +19,7 @@ const Home = () => {
     authUser.uid,
   ]);
   const toggleModal = () => {
+    console.log(isModalOpen);
     setIsModalOpen(!isModalOpen);
   };
 
@@ -44,15 +47,14 @@ const Home = () => {
             </p>
           )}
         </div>
-        <div>
-          {isModalOpen && (
-            <TransactionForm
-              userId={authUser.uid}
-              toggleModal={toggleModal}
-              isModalOpen={isModalOpen}
-            />
-          )}
-        </div>
+        {isModalOpen && <div className='absolute inset-0 bg-black opacity-50'></div>}
+        <CSSTransition in={isModalOpen} timeout={300} classNames='app-modal' unmountOnExit>
+          <TransactionForm
+            userId={authUser.uid}
+            toggleModal={toggleModal}
+            isModalOpen={isModalOpen}
+          />
+        </CSSTransition>
       </div>
     </div>
   );
