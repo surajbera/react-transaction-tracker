@@ -1,111 +1,33 @@
 /* libraries */
-import { Link, useLocation, useMatch } from 'react-router-dom';
-import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 
 /* hooks */
 import { useSignout } from '../../hooks';
 import { useAuthContext } from '../../hooks';
 
-/* components */
-import FullScreenLoader from '../ui/full-screen-loader/FullScreenLoader';
-
 const Navbar = () => {
   const { logOut, isPending } = useSignout();
-  // const { authUser } = useAuthContext()
-  // const { pathname } = useLocation()
-
-  const isLoginRoute = useMatch('/sign-in');
-  const isSignupRoute = useMatch('/sign-up');
-
-  const activeRouteStyles = {};
+  const { authUser } = useAuthContext();
 
   const onLogoutHandler = async () => {
     await logOut();
   };
 
-  const isRouteMatched = () => {
-    return false;
-  };
-
-  const authLinkCLasses = (isMatched) => {
-    return classNames([
-      'text-gray-800',
-      'dark:text-white',
-      'hover:bg-gray-50',
-      'focus:ring-4',
-      'focus:ring-gray-300',
-      'font-medium',
-      'rounded-lg',
-      'text-sm',
-      'px-4',
-      'lg:px-4',
-      'py-2',
-      'lg:py-2',
-      'ml-3',
-      'dark:hover:bg-gray-700',
-      'focus:outline-none',
-      'dark:focus:ring-gray-800',
-      { 'text-white': isMatched },
-      { 'bg-primary-600': isMatched },
-      { 'hover:bg-primary-700': isMatched },
-      { 'focus:ring-primary-300': isMatched },
-      { 'dark:bg-primary-600': isMatched },
-      { 'dark:hover:bg-primary-700': isMatched },
-      { 'dark:focus:ring-primary-800': isMatched },
-    ]);
-  };
-
   return (
-    // <>
-    //   <nav>
-    //     <ul>
-    //       <div className='app-logo'>
-    //         <Link to='/'>TrackIt</Link>
-    //       </div>
-    //       {!authUser && (
-    //         <ul>
-    //           <li>
-    //             <Link to='login' style={pathname === '/login' ? activeRouteStyles : {}}>
-    //               Login
-    //             </Link>
-    //           </li>
-    //           <li>
-    //             <Link to='signup' style={pathname === '/signup' ? activeRouteStyles : {}}>
-    //               Signup
-    //             </Link>
-    //           </li>
-    //         </ul>
-    //       )}
-    //       {authUser && (
-    //         <li>
-    //           <span onClick={onLogoutHandler}>Logout</span>
-    //         </li>
-    //       )}
-    //     </ul>
-    //   </nav>
-    //   {isPending && <FullScreenLoader />}
-    // </>
-
     <header>
-      <nav className='bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 shadow-sm'>
+      <nav className='bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 border-b border-gray-300'>
         <div className='flex flex-wrap justify-between items-center mx-auto max-w-screen-xl'>
           <div className='app-logo'>
-            <Link to='/' className='text-xl font-semibold whitespace-nowrap dark:text-white'>
+            <Link to='/' className='text-2xl font-semibold whitespace-nowrap dark:text-white'>
               TrackIt!
             </Link>
           </div>
 
-          <div className='flex items-center lg:order-2'>
-            <Link to='/sign-in' className={authLinkCLasses(isLoginRoute)}>
-              Sign In
-            </Link>
-            <Link to='/sign-up' className={authLinkCLasses(isSignupRoute)}>
-              Sign Up
-            </Link>
+          {authUser && (
             <li>
               <span onClick={onLogoutHandler}>Sign Out</span>
             </li>
-          </div>
+          )}
         </div>
       </nav>
     </header>
