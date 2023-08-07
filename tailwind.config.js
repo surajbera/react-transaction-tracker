@@ -21,7 +21,13 @@ export default {
           950: '#022c22',
         },
       },
+      screens: {
+        xs: '500px',
+        sm: '750px',
+        md: '1000px',
+        lg: '1200px',
+      },
     },
   },
   plugins: [],
-}
+};

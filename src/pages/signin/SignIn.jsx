@@ -32,7 +32,7 @@ const SignIn = () => {
   return (
     <section className='bg-gray-50 dark:bg-gray-900 h-screen auth-screen flex w-full'>
       <div className='bg-white rounded-lg shadow dark:border md:mt-0 dark:bg-gray-800 dark:border-gray-700 flex items-center w-full'>
-        <div className='space-y-4 md:space-y-6 w-full p-6'>
+        <div className='space-y-4 md:space-y-6 w-full p-6 xs:max-w-[500px] xs:mx-auto'>
           <h1 className='text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white'>
             <p className='my-4 text-4xl'>TrackIt!</p>
             <p>Sign in to your account</p>
@@ -120,7 +120,7 @@ const SignIn = () => {
           {isPending && <FullScreenLoader />}
         </div>
       </div>
-      <div className='hidden'>
+      <div className='hidden md:block'>
         <AuthPageBackground />
       </div>
     </section>
