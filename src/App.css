@@ -11,20 +11,15 @@
   min-height: 100vh;
 }
 
-/* .auth-screen > * {
-  flex: 1 1 50%;
-  max-width: 50%;
-} */
-
 /* Enter class */
 .app-modal-enter {
   opacity: 0;
-  transform: translateY(100px);
+  transform: translateY(50px);
 }
 .app-modal-enter-active {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 300ms, transform 300ms;
+  transition: opacity 250ms, transform 250ms;
 }
 
 /* Exit class */
@@ -33,6 +28,6 @@
 }
 .app-modal-exit-active {
   opacity: 0;
-  transform: translateY(100px);
-  transition: opacity 300ms, transform 300ms;
+  transform: translateY(50px);
+  transition: opacity 250ms, transform 250ms;
 }
