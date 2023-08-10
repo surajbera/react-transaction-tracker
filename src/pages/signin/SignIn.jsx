@@ -37,7 +37,7 @@ const SignIn = () => {
             <p className='my-4 text-4xl'>TrackIt!</p>
             <p>Sign in to your account</p>
           </h1>
-          <form className='space-y-4 md:space-y-6' onSubmit={onSubmitHandler}>
+          <form className='space-y-4 md:space-y-6 pt-6' onSubmit={onSubmitHandler}>
             <div>
               <label
                 htmlFor='email'
@@ -109,7 +109,7 @@ const SignIn = () => {
             <p className='text-sm font-light text-gray-500 dark:text-gray-400'>
               Don’t have an account yet?{' '}
               <Link
-                to='/sign-up'
+                to='/auth/sign-up'
                 className='font-medium text-primary-600 hover:underline dark:text-primary-500'
               >
                 Sign up

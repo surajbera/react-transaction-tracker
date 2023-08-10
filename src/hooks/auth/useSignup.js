@@ -3,14 +3,14 @@ import { useReducer } from 'react';
 
 /* firebase config */
 import { projectAuth } from '../../firebase/config';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  updateProfile,
+  sendEmailVerification,
+} from 'firebase/auth';
 
 /* utilities */
 import { customConsoleLog } from '../utilities/customConsoleLog';
-
-/* hooks */
-import { useAuthContext } from './useAuthContext';
-import { customDelay } from '../../hooks';
 
 /* constants */
 const IS_PENDING = 'IS_PENDING';
@@ -37,7 +37,6 @@ const initialState = {
 
 export const useSignup = () => {
   const [state, dispatch] = useReducer(signUpReducer, initialState);
-  const { dispatchLoginEvent } = useAuthContext();
 
   /* remove this */
   customConsoleLog('useSignup hook ran');
@@ -59,19 +58,30 @@ export const useSignup = () => {
     setIsPending(true);
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(projectAuth, email, password);
+      await createUserWithEmailAndPassword(projectAuth, email, password);
 
       /* NOTE: We do not need to manually throw the error */
       // if (!userCredential.user) {
       //   throw new Error('Could not complete the signup')
       // }
       // Even if the internet connection is off, control goes to the catch block, no need to manually throw the error, firebase does it automatically
+
+      // Set the display name for the user
       await updateProfile(projectAuth.currentUser, { displayName });
+
+      // dispatchLoginEvent(userCredential.user);
+      await sendEmailVerification(projectAuth.currentUser);
+
       setIsError(null);
-      dispatchLoginEvent(userCredential.user);
+
+      /* indicate success */
+      return true;
     } catch (error) {
       console.log(error.message);
       setIsError(error.message);
+
+      /* indicate failure */
+      return false;
     } finally {
       setIsPending(false);
     }

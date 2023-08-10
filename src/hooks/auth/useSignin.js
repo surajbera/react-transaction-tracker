@@ -60,8 +60,12 @@ export const useSignin = () => {
       // }
       // Even if the internet connection is off, control goes to the catch block, no need to manually throw the error
 
-      setIsError(null);
-      dispatchLoginEvent(userCredential.user);
+      if (userCredential.user.emailVerified) {
+        setIsError(null);
+        dispatchLoginEvent(userCredential.user);
+      } else {
+        setIsError('Please verify your email before signing in.');
+      }
     } catch (error) {
       console.log(error.message);
       setIsError(error.message);

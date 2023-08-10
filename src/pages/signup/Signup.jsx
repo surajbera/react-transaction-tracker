@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 /* hooks */
 import { useSignup } from '../../hooks';
@@ -9,6 +10,8 @@ import { AuthPageBackground, ErrorAlert, FullScreenLoader } from '../../componen
 
 /* icons */
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
+
+import { successToast } from '../../utils/toastConfig';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -19,11 +22,22 @@ const Signup = () => {
 
   const onSubmitHandler = async (evt) => {
     evt.preventDefault();
+
+    if (email === '' || password === '' || displayName === '') {
+      alert('Please fill in all fields!');
+      return;
+    }
+
     if (displayName.length > 5) {
       alert('Display name cannot be more than 5 characters!');
       return;
     }
-    await signUp(email, password, displayName);
+
+    const success = await signUp(email, password, displayName);
+
+    if (success) {
+      toast('Email Verification link dispatched!', successToast);
+    }
   };
 
   const formInputClasses = () => {
@@ -39,56 +53,6 @@ const Signup = () => {
   };
 
   return (
-    // <div className='form-container'>
-    //   <form onSubmit={onSubmitHandler}>
-    //     <h2>Signup</h2>
-    //     <label>
-    //       <span>Email: </span>
-    //       <input
-    //         type='email'
-    //         required
-    //         value={email}
-    //         onChange={(evt) => {
-    //           setEmail(evt.target.value);
-    //         }}
-    //       />
-    //     </label>
-
-    //     <label>
-    //       <span>Password: </span>
-    //       <input
-    //         type='password'
-    //         required
-    //         value={password}
-    //         onChange={(evt) => {
-    //           setPassword(evt.target.value);
-    //         }}
-    //       />
-    //     </label>
-
-    //     <label>
-    //       <span>Display Name: </span>
-    //       <input
-    //         type='text'
-    //         required
-    //         value={displayName}
-    //         onChange={(evt) => {
-    //           setDisplayName(evt.target.value);
-    //         }}
-    //       />
-    //     </label>
-
-    //     {isPending ? (
-    //       <button className='btn' disabled>
-    //         Loading...
-    //       </button>
-    //     ) : (
-    //       <button className='btn'>Signup</button>
-    //     )}
-    //   </form>
-    //   {isError && <p className='error-text'>{isError}</p>}
-    //   {isPending && <FullScreenLoader />}
-    // </div>
     <>
       <section className='bg-gray-50 dark:bg-gray-900 h-screen auth-screen flex w-full'>
         <div className='bg-white rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700 flex items-center w-full md:w-[50%]'>
@@ -178,7 +142,7 @@ const Signup = () => {
               <p className='text-sm font-light text-gray-500 dark:text-gray-400'>
                 Already have an account?
                 <Link
-                  to='/sign-in'
+                  to='/auth/sign-in'
                   className='font-medium text-primary-600 hover:underline dark:text-primary-500'
                 >
                   Sign In

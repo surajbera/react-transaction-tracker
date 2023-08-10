@@ -67,7 +67,9 @@ export const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(projectAuth, (user) => {
-      if (user) {
+      customConsoleLog('Execute hua mein, Execute hua...', '#c4b5fd');
+      if (user && user.emailVerified) {
+        console.log(user);
         setUser(user);
       }
       setIsAuthReady(true);

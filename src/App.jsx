@@ -1,6 +1,6 @@
 /* libraries */
 import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
+import { Toaster } from 'react-hot-toast';
 
 /* pages */
 import { Home, SignIn, Signup, NotFound, ForgotPassword } from './pages';
@@ -12,7 +12,6 @@ import { FullScreenLoader, PageLayout, PageLayoutWithoutNavbar } from './compone
 import { useAuthContext } from './hooks';
 
 import './App.css';
-import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const { isAuthReady, authUser } = useAuthContext();
@@ -25,30 +24,30 @@ function App() {
       children: [
         {
           index: true,
-          element: authUser ? <Home /> : <Navigate to='/sign-in' />
+          element: authUser ? <Home /> : <Navigate to='/auth/sign-in' />,
         },
         {
           path: 'forgot-password',
-          element: <ForgotPassword />
+          element: <ForgotPassword />,
         },
-      ]
+      ],
     },
     {
-      path: '/',
+      path: '/auth/',
       element: <PageLayoutWithoutNavbar />,
       errorElement: <NotFound />,
       children: [
         {
           path: 'sign-in',
-          element: !authUser ? <SignIn /> : <Navigate to='/' />
+          element: !authUser ? <SignIn /> : <Navigate to='/' />,
         },
         {
           path: 'sign-up',
-          element: !authUser ? <Signup /> : <Navigate to='/' />
+          element: !authUser ? <Signup /> : <Navigate to='/' />,
         },
-      ]
-    }
-  ])
+      ],
+    },
+  ]);
 
   return (
     <div className='root-inner flex flex-col'>
@@ -56,7 +55,7 @@ function App() {
       {isAuthReady && (
         <>
           <RouterProvider router={router} />
-          <ToastContainer />
+          <Toaster position='bottom-center' reverseOrder={false} />
         </>
       )}
     </div>

@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import classNames from 'classnames';
+import toast from 'react-hot-toast';
 
 /* firebase imports */
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { projectAuth } from '../../firebase/config';
+
+import { errorToast, successToast } from '../../utils/toastConfig';
 
 const ForgotPassword = () => {
   const [resetEmail, setResetEmail] = useState('');
@@ -25,12 +27,12 @@ const ForgotPassword = () => {
     try {
       await sendPasswordResetEmail(projectAuth, resetEmail);
       setIsPending(false);
-      navigate('/sign-in');
-      toast.success('Verification email sent, check your email!');
+      navigate('/auth/sign-in');
+      toast('Password reset link dispatched!', successToast);
     } catch (error) {
       setIsPending(false);
       console.log(error);
-      toast.error(error.message);
+      toast(error.message, errorToast);
     }
   };
 
