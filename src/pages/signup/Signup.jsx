@@ -1,6 +1,5 @@
 /* libraries */
 import { useState } from 'react';
-import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
@@ -11,49 +10,49 @@ import { AuthPageBackground, ErrorAlert, FullScreenLoader } from '../../componen
 /* icons */
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
 
+/* utils */
 import { successToast, errorToast } from '../../utils/toastConfig';
+import {
+  SIGN_UP_PAGE_SUBMIT_BTN_CLASSES,
+  SIGN_UP_PAGE_FORM_INPUT_CLASSES,
+} from '../../utils/htmlClasses';
 
 const Signup = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [displayName, setDisplayName] = useState('');
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    displayName: '',
+  });
   const [showPassword, setShowPassword] = useState(false);
   const { isPending, isError, signUp, resetError } = useSignup();
 
   const onSubmitHandler = async (evt) => {
     evt.preventDefault();
 
-    if (email === '' || password === '' || displayName === '') {
+    if (formData.email === '' || formData.password === '' || formData.displayName === '') {
       toast('Please fill in all fields!', errorToast);
       return;
     }
 
-    if (displayName.length > 5) {
+    if (formData.displayName.length > 5) {
       toast('Display name cannot be more than 5 characters!', errorToast);
       return;
     }
 
-    const success = await signUp(email, password, displayName);
+    const success = await signUp(formData.email, formData.password, formData.displayName);
 
     if (success) {
       toast('Email Verification link dispatched!', successToast);
-      setEmail('');
-      setPassword('');
-      setDisplayName('');
-      setShowPassword('');
+      setFormData((prev) => {
+        return { ...prev, email: '', password: '', displayName: '' };
+      });
     }
   };
 
-  const formInputClasses = () => {
-    return classNames(
-      'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-    );
-  };
-
-  const submitBtnClasses = () => {
-    return classNames(
-      'w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800'
-    );
+  const UpdateFormFields = (field, value) => {
+    setFormData((formData) => {
+      return { ...formData, [field]: value };
+    });
   };
 
   return (
@@ -77,12 +76,12 @@ const Signup = () => {
                   type='email'
                   name='email'
                   id='email'
-                  className={formInputClasses()}
+                  className={SIGN_UP_PAGE_FORM_INPUT_CLASSES}
                   placeholder='name@company.com'
                   required
-                  value={email}
+                  value={formData.email}
                   onChange={(evt) => {
-                    setEmail(evt.target.value);
+                    UpdateFormFields(evt.target.name, evt.target.value);
                   }}
                 />
               </div>
@@ -99,11 +98,11 @@ const Signup = () => {
                     name='password'
                     id='password'
                     placeholder='••••••••'
-                    className={formInputClasses()}
+                    className={SIGN_UP_PAGE_FORM_INPUT_CLASSES}
                     required
-                    value={password}
+                    value={formData.password}
                     onChange={(evt) => {
-                      setPassword(evt.target.value);
+                      UpdateFormFields(evt.target.name, evt.target.value);
                     }}
                   />
                   <span
@@ -123,23 +122,23 @@ const Signup = () => {
                 </label>
                 <input
                   type='text'
-                  name='display-name'
+                  name='displayName'
                   id='display-name'
-                  className={formInputClasses()}
+                  className={SIGN_UP_PAGE_FORM_INPUT_CLASSES}
                   placeholder='john'
                   required
-                  value={displayName}
+                  value={formData.displayName}
                   onChange={(evt) => {
-                    setDisplayName(evt.target.value);
+                    UpdateFormFields(evt.target.name, evt.target.value);
                   }}
                 />
               </div>
               {isPending ? (
-                <button type='submit' className={submitBtnClasses()}>
+                <button type='submit' className={SIGN_UP_PAGE_SUBMIT_BTN_CLASSES}>
                   Signing Up...
                 </button>
               ) : (
-                <button type='submit' className={submitBtnClasses()}>
+                <button type='submit' className={SIGN_UP_PAGE_SUBMIT_BTN_CLASSES}>
                   Sign Up
                 </button>
               )}
