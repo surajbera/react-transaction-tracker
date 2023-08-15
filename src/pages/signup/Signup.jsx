@@ -11,7 +11,7 @@ import { AuthPageBackground, ErrorAlert, FullScreenLoader } from '../../componen
 /* icons */
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
 
-import { successToast } from '../../utils/toastConfig';
+import { successToast, errorToast } from '../../utils/toastConfig';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -24,12 +24,12 @@ const Signup = () => {
     evt.preventDefault();
 
     if (email === '' || password === '' || displayName === '') {
-      alert('Please fill in all fields!');
+      toast('Please fill in all fields!', errorToast);
       return;
     }
 
     if (displayName.length > 5) {
-      alert('Display name cannot be more than 5 characters!');
+      toast('Display name cannot be more than 5 characters!', errorToast);
       return;
     }
 
@@ -37,6 +37,10 @@ const Signup = () => {
 
     if (success) {
       toast('Email Verification link dispatched!', successToast);
+      setEmail('');
+      setPassword('');
+      setDisplayName('');
+      setShowPassword('');
     }
   };
 

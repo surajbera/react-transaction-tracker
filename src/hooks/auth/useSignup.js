@@ -58,6 +58,7 @@ export const useSignup = () => {
     setIsPending(true);
 
     try {
+      await new Promise((res) => setTimeout(res, 1000));
       await createUserWithEmailAndPassword(projectAuth, email, password);
 
       /* NOTE: We do not need to manually throw the error */
