@@ -46,7 +46,7 @@ const Signup = () => {
     }
   };
 
-  const UpdateFormFields = (field, value) => {
+  const updateFormFields = (field, value) => {
     setFormData((formData) => {
       return { ...formData, [field]: value };
     });
@@ -78,7 +78,7 @@ const Signup = () => {
                   required
                   value={formData.email}
                   onChange={(evt) => {
-                    UpdateFormFields(evt.target.name, evt.target.value);
+                    updateFormFields(evt.target.name, evt.target.value);
                   }}
                 />
               </div>
@@ -99,7 +99,7 @@ const Signup = () => {
                     required
                     value={formData.password}
                     onChange={(evt) => {
-                      UpdateFormFields(evt.target.name, evt.target.value);
+                      updateFormFields(evt.target.name, evt.target.value);
                     }}
                   />
                   <span
@@ -126,7 +126,7 @@ const Signup = () => {
                   required
                   value={formData.displayName}
                   onChange={(evt) => {
-                    UpdateFormFields(evt.target.name, evt.target.value);
+                    updateFormFields(evt.target.name, evt.target.value);
                   }}
                 />
               </div>
