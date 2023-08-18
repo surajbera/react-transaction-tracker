@@ -12,10 +12,7 @@ import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
 
 /* utils */
 import { successToast, errorToast } from '../../utils/toastConfig';
-import {
-  SIGN_UP_PAGE_SUBMIT_BTN_CLASSES,
-  SIGN_UP_PAGE_FORM_INPUT_CLASSES,
-} from '../../utils/htmlClasses';
+import { SUBMIT_BTN_CLASSES, FORM_INPUT_CLASSES } from '../../utils/htmlClasses';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -76,7 +73,7 @@ const Signup = () => {
                   type='email'
                   name='email'
                   id='email'
-                  className={SIGN_UP_PAGE_FORM_INPUT_CLASSES}
+                  className={FORM_INPUT_CLASSES}
                   placeholder='name@company.com'
                   required
                   value={formData.email}
@@ -98,7 +95,7 @@ const Signup = () => {
                     name='password'
                     id='password'
                     placeholder='••••••••'
-                    className={SIGN_UP_PAGE_FORM_INPUT_CLASSES}
+                    className={FORM_INPUT_CLASSES}
                     required
                     value={formData.password}
                     onChange={(evt) => {
@@ -124,7 +121,7 @@ const Signup = () => {
                   type='text'
                   name='displayName'
                   id='display-name'
-                  className={SIGN_UP_PAGE_FORM_INPUT_CLASSES}
+                  className={FORM_INPUT_CLASSES}
                   placeholder='john'
                   required
                   value={formData.displayName}
@@ -134,11 +131,11 @@ const Signup = () => {
                 />
               </div>
               {isPending ? (
-                <button type='submit' className={SIGN_UP_PAGE_SUBMIT_BTN_CLASSES}>
+                <button type='submit' className={SUBMIT_BTN_CLASSES} disabled={true}>
                   Signing Up...
                 </button>
               ) : (
-                <button type='submit' className={SIGN_UP_PAGE_SUBMIT_BTN_CLASSES}>
+                <button type='submit' className={SUBMIT_BTN_CLASSES}>
                   Sign Up
                 </button>
               )}

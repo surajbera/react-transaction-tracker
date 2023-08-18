@@ -1,10 +1,15 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import classNames from 'classnames';
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
 
+/* hooks */
 import { useSignin } from '../../hooks';
+
+/* components */
 import { AuthPageBackground, ErrorAlert, FullScreenLoader } from '../../components';
+
+/* utils */
+import { SUBMIT_BTN_CLASSES, FORM_INPUT_CLASSES } from '../../utils/htmlClasses';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -15,18 +20,6 @@ const SignIn = () => {
   const onSubmitHandler = async (evt) => {
     evt.preventDefault();
     await login(email, password);
-  };
-
-  const formInputClasses = () => {
-    return classNames(
-      'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-    );
-  };
-
-  const submitBtnClasses = () => {
-    return classNames(
-      'w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800'
-    );
   };
 
   return (
@@ -49,7 +42,7 @@ const SignIn = () => {
                 type='email'
                 name='email'
                 id='email'
-                className={formInputClasses()}
+                className={FORM_INPUT_CLASSES}
                 placeholder='name@company.com'
                 required
                 value={email}
@@ -71,7 +64,7 @@ const SignIn = () => {
                   name='password'
                   id='password'
                   placeholder='••••••••'
-                  className={formInputClasses()}
+                  className={FORM_INPUT_CLASSES}
                   required
                   value={password}
                   onChange={(evt) => {
@@ -98,11 +91,11 @@ const SignIn = () => {
               </Link>
             </div>
             {isPending ? (
-              <button type='submit' className={submitBtnClasses()}>
+              <button type='submit' className={SUBMIT_BTN_CLASSES} disabled={true}>
                 Signing In...
               </button>
             ) : (
-              <button type='submit' className={submitBtnClasses()}>
+              <button type='submit' className={SUBMIT_BTN_CLASSES}>
                 Sign in
               </button>
             )}
