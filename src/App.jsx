@@ -11,6 +11,7 @@ import { FullScreenLoader, PageLayout, PageLayoutWithoutNavbar } from './compone
 /* hooks */
 import { useAuthContext } from './hooks';
 
+/* styles */
 import './App.css';
 
 function App() {
