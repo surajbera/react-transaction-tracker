@@ -3,7 +3,7 @@ import { useReducer } from 'react';
 import { projectAuth } from '../../firebase/config';
 import { signOut } from 'firebase/auth';
 
-import { customConsoleLog } from '../utilities/customConsoleLog';
+import { customConsoleLog } from '../../utils/customConsoleLog';
 import { useAuthContext } from './useAuthContext';
 
 export const useSignout = () => {

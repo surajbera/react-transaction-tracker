@@ -2,7 +2,7 @@ import { createContext, useReducer, useEffect } from 'react';
 
 import { onAuthStateChanged } from 'firebase/auth';
 import { projectAuth } from '../firebase/config';
-import { customConsoleLog } from '../hooks';
+import { customConsoleLog } from '../utils/customConsoleLog';
 
 export const AuthContext = createContext();
 

@@ -10,7 +10,7 @@ import {
 } from 'firebase/auth';
 
 /* utilities */
-import { customConsoleLog } from '../utilities/customConsoleLog';
+import { customConsoleLog } from '../../utils/customConsoleLog';
 
 /* constants */
 const IS_PENDING = 'IS_PENDING';

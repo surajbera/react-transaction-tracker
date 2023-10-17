@@ -5,7 +5,7 @@ import { useReducer } from 'react';
 import { projectAuth } from '../../firebase/config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
-import { customConsoleLog } from '../utilities/customConsoleLog';
+import { customConsoleLog } from '../../utils/customConsoleLog';
 import { useAuthContext } from './useAuthContext';
 
 export const useSignin = () => {
