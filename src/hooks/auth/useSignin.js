@@ -1,5 +1,7 @@
+/* library */
 import { useReducer } from 'react';
 
+/* firebase */
 import { projectAuth } from '../../firebase/config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 

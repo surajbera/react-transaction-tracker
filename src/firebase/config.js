@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
-// Your web app's Firebase configuration
+/* web app's Firebase configuration */
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_APP_apiKey,
   authDomain: import.meta.env.VITE_APP_authDomain,
@@ -12,7 +12,7 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_APP_appId,
 };
 
-// Initialize Firebase
+/* Initialize Firebase */
 const firebaseApp = initializeApp(firebaseConfig);
 
 /* Initialize Service */
