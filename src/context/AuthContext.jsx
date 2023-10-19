@@ -1,52 +1,53 @@
+/* library */
 import { createContext, useReducer, useEffect } from 'react';
-
 import { onAuthStateChanged } from 'firebase/auth';
+
+/* firebase config */
 import { projectAuth } from '../firebase/config';
-import { customConsoleLog } from '../utils/customConsoleLog';
+
+/* utils */
+import { customConsoleLog } from '../utils';
 
 export const AuthContext = createContext();
 
+const LOGIN = 'LOGIN';
+const LOGOUT = 'LOGOUT';
+const IS_AUTH_READY = 'IS_AUTH_READY';
+const SET_USER = 'SET_USER';
+
+const initialState = {
+  authUser: null,
+  isAuthReady: false,
+};
+
+const authReducer = (state, action) => {
+  switch (action.type) {
+    case LOGIN:
+      return {
+        ...state,
+        authUser: action.payload,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        authUser: null,
+      };
+    case IS_AUTH_READY:
+      return {
+        ...state,
+        isAuthReady: action.payload,
+      };
+    case SET_USER:
+      return {
+        ...state,
+        authUser: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
 export const AuthContextProvider = ({ children }) => {
-  /* remove this */
-  customConsoleLog('AuthContextProvider ran', '#cbd5e1');
-
-  const LOGIN = 'LOGIN';
-  const LOGOUT = 'LOGOUT';
-  const IS_AUTH_READY = 'IS_AUTH_READY';
-  const SET_USER = 'SET_USER';
-
-  const initialState = {
-    authUser: null,
-    isAuthReady: false,
-  };
-
-  const authReducer = (state, action) => {
-    switch (action.type) {
-      case LOGIN:
-        return {
-          ...state,
-          authUser: action.payload,
-        };
-      case LOGOUT:
-        return {
-          ...state,
-          authUser: null,
-        };
-      case IS_AUTH_READY:
-        return {
-          ...state,
-          isAuthReady: action.payload,
-        };
-      case SET_USER:
-        return {
-          ...state,
-          authUser: action.payload,
-        };
-      default:
-        return state;
-    }
-  };
-
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   const dispatchLoginEvent = (value) => {
@@ -67,9 +68,11 @@ export const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(projectAuth, (user) => {
-      customConsoleLog('Execute hua mein, Execute hua...', '#c4b5fd');
       if (user && user.emailVerified) {
-        console.log(user);
+        customConsoleLog(
+          'onAuthStateChanged inside useEffect is running(Auth Provider Component)',
+          '#cbd5e1'
+        );
         setUser(user);
       }
       setIsAuthReady(true);
