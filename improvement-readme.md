@@ -1,0 +1,1 @@
+- Inside AuthContext file, I feel that SET_USER case is redundant
